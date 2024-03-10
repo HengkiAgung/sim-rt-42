@@ -1,6 +1,6 @@
 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-8">
 <li class="breadcrumb-item text-white fw-bold lh-1">
-<a href="{{route('dashboard')}}" class="text-white">
+<a href="/12" class="text-white">
 <i class="fa-solid fa-home text-white fs-8"></i>
 </a>
 </li>
