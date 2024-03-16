@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Citizen;
 
 use App\Http\Controllers\Controller;
+use App\Models\Citizen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use File;
 
 class ManagementCitizenController extends Controller
 {
@@ -11,9 +14,42 @@ class ManagementCitizenController extends Controller
         return view('citizen.index');
     }
 
+    public function getDataTable()
+    {
+        $citizen = Citizen::get(['nik', 'name', 'birthplace', 'birthdate', 'gender', 'address_domisili']);
+        return response()->json($citizen);
+    }
+
     public function store(Request $request)
     {
-        dd($request);
+        $citizen = Citizen::create($request->except('ktp_file', 'pic_file'));
+
+        if ($request->has('ktp_file')) {
+            $this->saveFile($request->ktp_file, 'file/ktp/');
+        }
+
+        if ($request->has('pic_file')) {
+            $this->saveFile($request->pic_file, 'file/pic/');
+        }
+
+        $citizen->save();
+
+        return response()->json(['status' => "Berhasil menambah data warga"]);
+    }
+
+    private function saveFile($file, $path, $old_file = null)
+    {
+        if ($old_file) {
+            if (File::exists(public_path($path). $old_file )) {
+                FIle::delete(public_path($path). $old_file );
+            }
+        }
+
+        $filename = STR::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)). '.' .$file->getClientOriginalExtension();
+
+		$file->move($path,$filename);
+
+        return $filename;
     }
 
     // getDataTable

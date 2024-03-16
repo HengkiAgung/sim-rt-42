@@ -17,23 +17,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route("dashboard");
 });
 
 Route::get("login", [AuthController::class, "login"])->name("login");
-
-Route::prefix("citizen")->group(function () {
-    Route::controller(ManagementCitizenController::class)->group(function () {
-        Route::get("/", 'index')->name('citizen.index');
-        Route::get("/get/datatable", 'getDataTable')->name('citizen.get.datatable');
-        Route::post("/store", 'store')->name('citizen.store');
-    });
-});
+Route::post("authenticate", [AuthController::class, "authenticate"])->name("authenticate");
 
 Route::prefix("family")->group(function () {
     Route::controller(ManagementFamilyController::class)->group(function () {
         Route::get("/", 'index')->name('family.index');
         Route::get("/get/datatable", 'getDataTable')->name('family.get.datatable');
+    });
+});
 
+Route::middleware(['auth'])->group(function () {
+    Route::post("logout", [AuthController::class, "logout"])->name("logout");
+    Route::post('reset/password', [AuthController::class, 'resetPassword'])->name('reset.password');
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+    Route::prefix("citizen")->group(function () {
+        Route::controller(ManagementCitizenController::class)->group(function () {
+            Route::get("/", 'index')->name('citizen.index');
+            Route::get("/get/datatable", 'getDataTable')->name('citizen.get.datatable');
+            Route::post("/store", 'store')->name('citizen.store');
+        });
     });
 });

@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
 	<base href="../"/>
-	<title>@yield('title-apps','ERP Comtelindo') | ERP Comtelindo</title>
+	<title>@yield('title-apps','SIM RT 42') | SIM RT 42</title>
 	<meta charset="utf-8" />
-	<meta name="description" content="ERP Comtelindo DESC" />
-	<meta name="keywords" content="ERP Comtelindo" />
+	<meta name="description" content="SIM RT 42 DESC" />
+	<meta name="keywords" content="SIM RT 42" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="ERP Comtelindo by ODS" />
-	<meta property="og:url" content="https://app.comtelindo.com" />
-	<meta property="og:site_name" content="Comtelindo | ERP Comtelindo" />
-	<link rel="canonical" href="https://app.comtelindo.com" />
-	<link rel="canonical" href="https://app.comtelindo.com" />
+	<meta property="og:title" content="SIM RT 42 by ODS" />
+	<meta property="og:site_name" content="SIM RT 42" />
 	<link rel="shortcut icon" href="{{asset('sense')}}/media/logos/favicon.ico" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" />
 	<link href="{{asset('sense')}}/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
@@ -41,6 +38,9 @@ data-kt-app-sidebar-enabled="@yield('sidebar-status','false')" data-kt-app-sideb
 class="app-default page-loading-enabled page-loading">
 
 <style>
+    .error {
+        color: red;
+    }
 	.kbw-signature {
 		width: 100%;
 		height: 260px;
@@ -112,6 +112,7 @@ input[type="number"]::-webkit-outer-spin-button {
 <script src="{{asset('sense')}}/js/scripts.bundle.js"></script>
 <script src="{{asset('sense')}}/plugins/custom/datatables/datatables.bundle.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 
 
 <script>
@@ -119,7 +120,7 @@ input[type="number"]::-webkit-outer-spin-button {
         window[tableName]  = $(elementName)
         .DataTable({
             processing: true,
-            serverSide: true,
+            serverSide: false,
             retrieve: true,
             deferRender: true,
             responsive: false,
@@ -129,7 +130,8 @@ input[type="number"]::-webkit-outer-spin-button {
                 url : ajaxLink,
                 data: function(data) {
                     data.filters = filters
-                }
+                },
+                dataSrc: ""
             },
             language: {
                 "lengthMenu": "Show _MENU_",
