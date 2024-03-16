@@ -40,7 +40,7 @@
                                                 </div>
                                                 <div class="col-lg-12 mb-15">
                                                     <form class="form w-100" id="kt_sign_in_form"
-                                                        action="{{ route('login') }}" method="POST" autocomplete>
+                                                        action="{{ route('authenticate') }}" method="POST" autocomplete>
                                                         @csrf
                                                         <div class="row">
                                                             <div class="col-lg-12 mb-3">
@@ -77,17 +77,6 @@
                                                                         </span>
                                                                     </div>
                                                                 @endif
-                                                            </div>
-                                                            <div class="col-lg-12 mb-3">
-                                                                <div
-                                                                    class="form-check form-check-sm form-check-solid form-check-custom align-items-start">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="1" id="remember_me" name="remember" />
-                                                                    <label class="form-check-label ms-2 fw-semibold fs-7"
-                                                                        for="remember_me">
-                                                                        Remember Me
-                                                                    </label>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                 </div>

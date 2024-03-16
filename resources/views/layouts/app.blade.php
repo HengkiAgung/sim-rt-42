@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
 	<base href="../"/>
-	<title>@yield('title-apps','ERP Comtelindo') | ERP Comtelindo</title>
+	<title>@yield('title-apps','SIM RT 42') | SIM RT 42</title>
 	<meta charset="utf-8" />
-	<meta name="description" content="ERP Comtelindo DESC" />
-	<meta name="keywords" content="ERP Comtelindo" />
+	<meta name="description" content="SIM RT 42 DESC" />
+	<meta name="keywords" content="SIM RT 42" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="ERP Comtelindo by ODS" />
-	<meta property="og:url" content="https://app.comtelindo.com" />
-	<meta property="og:site_name" content="Comtelindo | ERP Comtelindo" />
-	<link rel="canonical" href="https://app.comtelindo.com" />
-	<link rel="canonical" href="https://app.comtelindo.com" />
+	<meta property="og:title" content="SIM RT 42 by ODS" />
+	<meta property="og:site_name" content="SIM RT 42" />
 	<link rel="shortcut icon" href="{{asset('sense')}}/media/logos/favicon.ico" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" />
 	<link href="{{asset('sense')}}/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />

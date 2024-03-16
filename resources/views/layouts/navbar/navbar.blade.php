@@ -1,3 +1,5 @@
+@include('layouts.navbar.modal-change-password')
+
 <div id="kt_app_header" class="app-header">
     <div class="app-container container-xxl d-flex align-items-stretch justify-content-between"
         id="kt_app_header_container">
@@ -25,191 +27,23 @@
                 <div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-500 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
                     id="kt_app_header_menu" data-kt-menu="true">
                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                        class="menu-item  here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
-                            <span class="menu-title">Spaces</span>
+                            <a href="" class="menu-title">Warga</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
-                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0">
-                            <div class="menu-active-bg px-4 px-lg-0">
-                                <div class="d-flex w-100 overflow-auto">
-                                    <ul
-                                        class="nav nav-stretch nav-line-tabs fw-bold fs-6 p-0 p-lg-10 flex-nowrap flex-grow-1">
-                                        <li class="nav-item mx-lg-1">
-                                            <a class="nav-link py-3 py-lg-6 active text-active-info border-active-info border-hover-info"
-                                                href="#" data-bs-toggle="tab"
-                                                data-bs-target="#kt_app_header_app_commercial">Commercial</a>
-                                        </li>
-                                        <li class="nav-item mx-lg-1">
-                                            <a class="nav-link py-3 py-lg-6 text-active-warning border-active-warning border-hover-warning"
-                                                href="#" data-bs-toggle="tab"
-                                                data-bs-target="#kt_app_header_app_operation">Operation</a>
-                                        </li>
-                                        <li class="nav-item mx-lg-1">
-                                            <a class="nav-link py-3 py-lg-6 text-active-success border-active-success border-hover-success"
-                                                href="#" data-bs-toggle="tab"
-                                                data-bs-target="#kt_app_header_app_finance">Finance</a>
-                                        </li>
-                                        <li class="nav-item mx-lg-1">
-                                            <a class="nav-link py-3 py-lg-6 text-active-primary border-active-primary border-hover-primary"
-                                                href="#" data-bs-toggle="tab"
-                                                data-bs-target="#kt_app_header_app_hclegal">HC & Legal</a>
-                                        </li>
-                                        <li class="nav-item mx-lg-1">
-                                            <a class="nav-link py-3 py-lg-6 text-active-dark border-active-dark border-hover-dark"
-                                                href="#" data-bs-toggle="tab"
-                                                data-bs-target="#kt_app_header_app_direksi">BoD</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content py-4 py-lg-8 px-lg-7">
-                                    <div class="tab-pane w-lg-600px active show" id="kt_app_header_app_commercial">
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-6 mb-lg-0">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="menu-item p-0 m-0">
-                                                            <a href="" class="menu-link">
-                                                                <span
-                                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-35px h-35px me-4 bg-light">
-                                                                    <i
-                                                                        class="fa-solid fa-paper-plane text-info fs-3"></i>
-                                                                </span>
-                                                                <span class="d-flex flex-column">
-                                                                    <span class="fs-6 fw-bold text-dark">Leap</span>
-                                                                    <span class="fs-7 fw-semibold text-gray-500">Lead
-                                                                        Dulu Prospek Kemudian</span>
-                                                                </span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="menu-item p-0 m-0" data-kt-menu-trigger="hover"
-                                                            data-kt-menu-placement="bottom-start"
-                                                            data-kt-menu-offset="10px, 10px">
-                                                            <a class="menu-link">
-                                                                <span
-                                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-35px h-35px me-4 bg-light">
-                                                                    <i
-                                                                        class="fa-solid fa-hand-holding-dollar text-info fs-3"></i>
-                                                                </span>
-                                                                <span class="d-flex flex-column">
-                                                                    <span
-                                                                        class="fs-6 fw-bold text-dark">Opportunity</span>
-                                                                    <span
-                                                                        class="fs-7 fw-semibold text-gray-500">Opportunity</span>
-                                                                </span>
-                                                                <span class="menu-title"></span>
-                                                                <span class="svg-icon fs-3 rotate-180 ms-3 me-0">
-                                                                    <i
-                                                                        class="fa-solid fa-chevron-down text-gray-600"></i>
-                                                                </span>
-                                                            </a>
-                                                            <div class="menu-sub menu-sub-dropdown p-3 w-200px">
-                                                                <div class="menu-item">
-                                                                    <a href="" class="menu-link">
-                                                                        <span
-                                                                            class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-20px h-20px me-4 bg-light">
-                                                                            <i
-                                                                                class="fa-solid fa-file-signature text-info fs-3"></i>
-                                                                        </span>
-                                                                        <span class="d-flex flex-column">
-                                                                            <span
-                                                                                class="fs-7 fw-semibold text-gray-800">Survey</span>
-                                                                        </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="menu-item">
-                                                                    <a href="" class="menu-link">
-                                                                        <span
-                                                                            class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-20px h-20px me-4 bg-light">
-                                                                            <i
-                                                                                class="fa-solid fa-clipboard-list text-info fs-3"></i>
-                                                                        </span>
-                                                                        <span class="d-flex flex-column">
-                                                                            <span
-                                                                                class="fs-7 fw-semibold text-gray-800">BOQ</span>
-                                                                        </span>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="menu-item">
-                                                                    <a href="" class="menu-link">
-                                                                        <span
-                                                                            class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-20px h-20px me-4 bg-light">
-                                                                            <i
-                                                                                class="fa-solid fa-file-invoice-dollar text-info fs-3"></i>
-                                                                        </span>
-                                                                        <span class="d-flex flex-column">
-                                                                            <span
-                                                                                class="fs-7 fw-semibold text-gray-800">Quotation</span>
-                                                                        </span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="menu-item p-0 m-0">
-                                                            <a href=""
-                                                                class="menu-link">
-                                                                <span
-                                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-35px h-35px me-4 bg-light">
-                                                                    <i
-                                                                        class="fa-solid fa-file-invoice text-info fs-3"></i>
-                                                                </span>
-                                                                <span class="d-flex flex-column">
-                                                                    <span class="fs-6 fw-bold text-dark">Sales
-                                                                        Order</span>
-                                                                    <span
-                                                                        class="fs-7 fw-semibold text-gray-500">Pesanan
-                                                                        Penjualan</span>
-                                                                </span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane w-lg-600px" id="kt_app_header_app_operation">
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-6 mb-lg-0">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="menu-item p-0 m-0">
-                                                            <a href="" class="menu-link">
-                                                                <div
-                                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-35px h-35px me-4 bg-light position-relative">
-                                                                    <span
-                                                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                                        11
-                                                                        <span class="visually-hidden">unread
-                                                                            messages</span>
-                                                                    </span>
-                                                                    <i
-                                                                        class="fa-solid fa-file-alt text-warning fs-2"></i>
-                                                                </div>
-                                                                <span class="d-flex flex-column">
-                                                                    <span
-                                                                        class="fs-6 fw-bold text-dark">Assignment</span>
-                                                                    <span class="fs-7 fw-semibold text-gray-500">Bikin
-                                                                        surat dulu, Jalan kemudian</span>
-                                                                </span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
                         class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
-                            <a href="" class="menu-title">Promag</a>
+                            <a href="" class="menu-title">Keluarga</a>
+                            <span class="menu-arrow d-lg-none"></span>
+                        </span>
+                    </div>
+                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
+                        class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                        <span class="menu-link">
+                            <a href="" class="menu-title">Lorong</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                     </div>
@@ -329,14 +163,8 @@
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5 my-0">
-                            <a href="" class="menu-link px-5 py-2">
-                                <span class="menu-title position-relative">Profile
-                                </span>
-                            </a>
-                        </div>
-                        <div class="menu-item px-5 my-0">
-                            <a href="#!" class="menu-link px-5 py-2">
-                                <span class="menu-title position-relative">Setting
+                            <a href="#kt_modal_change_password" data-bs-toggle="modal" class="menu-link px-5 py-2">
+                                <span class="menu-title position-relative">Ubah Password
                                 </span>
                             </a>
                         </div>
@@ -351,7 +179,7 @@
                                     </span>
                                 </span>
                             </a>
-                            <form id="logout-form" action="" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
