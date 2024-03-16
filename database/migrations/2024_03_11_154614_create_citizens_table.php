@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('family_id')->constrained();
-            $table->foreignId('hallway_id')->constrained();
+            $table->foreignId('family_id')->nullable()->constrained();
+            $table->foreignId('hallway_id')->nullable()->constrained();
             $table->bigInteger('nik')->unique();
             $table->string('name');
             $table->string('birthplace');
@@ -33,8 +33,8 @@ return new class extends Migration
             $table->enum('marital_status', Constants::MARITAL_STATUS);
             $table->string('work');
             $table->string('nationality');
-            $table->string('ktp_file');
-            $table->string('pic_file');
+            $table->string('ktp_file')->nullable();
+            $table->string('pic_file')->nullable();
             $table->enum('citizen_status', Constants::CITIZEN_STATUS);
             $table->timestamps();
         });

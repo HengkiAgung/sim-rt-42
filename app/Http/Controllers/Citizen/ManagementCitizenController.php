@@ -11,5 +11,10 @@ class ManagementCitizenController extends Controller
         return view('citizen.index');
     }
 
+    public function store(Request $request)
+    {
+        dd($request);
+    }
+
     // getDataTable
 }

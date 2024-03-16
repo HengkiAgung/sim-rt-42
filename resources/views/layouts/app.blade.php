@@ -111,7 +111,7 @@ input[type="number"]::-webkit-outer-spin-button {
 <script src="{{asset('sense')}}/plugins/global/plugins.bundle.js"></script>
 <script src="{{asset('sense')}}/js/scripts.bundle.js"></script>
 <script src="{{asset('sense')}}/plugins/custom/datatables/datatables.bundle.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
 
 <script>
@@ -428,5 +428,6 @@ input[type="number"]::-webkit-outer-spin-button {
     // }
 
 </script>
+@stack('js')
 </body>
 </html>
