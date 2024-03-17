@@ -10,11 +10,8 @@
             </div>
         </div>
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
-            <a>
-                <img alt="Logo" src="{{ asset('sense') }}/media/logos/logo-comtel.png"
-                    class="h-35px d-sm-none ms-4" />
-                <img alt="Logo" src="{{ asset('sense') }}/media/logos/logo-full-30.png"
-                    class="h-35px d-none d-sm-inline" />
+            <a href="/" class="fw-bold ps-5">
+                SIM-RT 42
             </a>
         </div>
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">

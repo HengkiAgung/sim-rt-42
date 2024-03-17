@@ -1,8 +1,7 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <a href="/">
-            <img alt="Logo" src="{{asset('sense')}}/media/logos/logo-full-30.png" class="w-150px text-center app-sidebar-logo-default" />
-            <img alt="Logo" src="{{asset('sense')}}/media/logos/logo-comtel.png" class="h-20px app-sidebar-logo-minimize" />
+        <a href="/" class="fw-bold ps-5">
+            SIM-RT-42
         </a>
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
             <span class="svg-icon svg-icon-2 rotate-180">

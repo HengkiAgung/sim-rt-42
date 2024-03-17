@@ -17,6 +17,6 @@ class Hallway extends Model
 
     public function chief()
     {
-        return $this->hasOne(Citizen::class, 'chief_id');
+        return $this->belongsTo(Citizen::class, 'chief_id');
     }
 }
