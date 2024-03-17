@@ -7,17 +7,19 @@ use App\Models\Citizen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use File;
+use Yajra\DataTables\Facades\DataTables;
 
 class ManagementCitizenController extends Controller
 {
-    public function index (){
+    public function index ()
+    {
         return view('citizen.index');
     }
 
     public function getDataTable()
     {
-        $citizen = Citizen::get(['nik', 'name', 'birthplace', 'birthdate', 'gender', 'address_domisili']);
-        return response()->json($citizen);
+        $citizen = Citizen::get(['id','nik', 'name', 'birthplace', 'birthdate', 'gender', 'address_domisili']);
+        return DataTables::of($citizen)->make();
     }
 
     public function store(Request $request)
@@ -50,6 +52,14 @@ class ManagementCitizenController extends Controller
 		$file->move($path,$filename);
 
         return $filename;
+    }
+
+    public function destroy($id)
+    {
+        $citizen = Citizen::find($id);
+
+        $citizen->delete();
+        return response()->json(['status' => 'Berhasil menghapus data warga']);
     }
 
     // getDataTable

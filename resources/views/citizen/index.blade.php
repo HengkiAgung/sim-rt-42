@@ -268,7 +268,7 @@
                 {
                     data: null,
                     render: function(data, type, row, meta) {
-                        return `<button class="btn btn-warning text-white" data-toggle="modal" data-target=""><i class="fa fa-edit"></i> Edit</button> <button class="btn btn-danger text-white"><i class="fa fa-trash"></i> Delete</button>`;
+                        return `<button class="btn btn-warning text-white" data-toggle="modal" data-target=""><i class="fa fa-edit"></i> Edit</button> <button class="btn btn-danger text-white" onclick="deleteCitizen(${row.id})"><i class="fa fa-trash"></i> Delete</button>`;
                     }
                 }
             ],
@@ -279,5 +279,33 @@
             formId: 'modal',
             ajaxLink: '/citizen/store'
         })
+
+        const deleteCitizen = (id) => {
+            Swal.fire({
+                title: "Apakah Anda yakin menghapus Warga ini?",
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Tidak, Batalkan!',
+                reverseButtons: true
+            }).then((then) => {
+                if (then.isConfirmed) {
+                    console.log(true);
+                    $.ajax({
+                        url: `/citizen/${id}/delete`,
+                        type: "POST",
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        success: function(res) {
+                            toastr.success(res.status,'Selamat 🚀 !');
+                            window['citizenTable'].ajax.reload()
+                        }
+                    })
+                }
+            });
+        }
+
     </script>
 @endpush

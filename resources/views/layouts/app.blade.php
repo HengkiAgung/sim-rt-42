@@ -120,7 +120,7 @@ input[type="number"]::-webkit-outer-spin-button {
         window[tableName]  = $(elementName)
         .DataTable({
             processing: true,
-            serverSide: false,
+            serverSide: true,
             retrieve: true,
             deferRender: true,
             responsive: false,
@@ -131,7 +131,6 @@ input[type="number"]::-webkit-outer-spin-button {
                 data: function(data) {
                     data.filters = filters
                 },
-                dataSrc: ""
             },
             language: {
                 "lengthMenu": "Show _MENU_",

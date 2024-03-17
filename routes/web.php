@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get("/", 'index')->name('citizen.index');
             Route::get("/get/datatable", 'getDataTable')->name('citizen.get.datatable');
             Route::post("/store", 'store')->name('citizen.store');
+            Route::post("/{id}/delete", 'destroy')->name('citizen.delete');
         });
     });
 });
