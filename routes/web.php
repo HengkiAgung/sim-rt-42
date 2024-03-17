@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get("/", 'index')->name('citizen.index');
             Route::get("/get/datatable", 'getDataTable')->name('citizen.get.datatable');
             Route::post("/store", 'store')->name('citizen.store');
+            Route::get("/{id}/manage", 'manageCitizen')->name('citizen.manage');
+            Route::put("/{id}/update", 'update')->name('citizen.update');
             Route::post("/{id}/delete", 'destroy')->name('citizen.delete');
         });
     });

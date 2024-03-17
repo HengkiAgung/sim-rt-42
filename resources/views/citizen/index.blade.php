@@ -236,6 +236,7 @@
                         <table id="table" class="table">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>NIK</th>
                                     <th>Nama Lengkap</th>
                                     <th>Tempat Lahir</th>
@@ -259,6 +260,7 @@
             tableName: 'citizenTable',
             ajaxLink: '/citizen/get/datatable',
             columnData: [
+                {data: 'DT_RowIndex', orderable: false, searchable: false},
                 {"data": 'nik'},
                 {"data": 'name'},
                 {"data": 'birthplace'},
@@ -268,7 +270,7 @@
                 {
                     data: null,
                     render: function(data, type, row, meta) {
-                        return `<button class="btn btn-warning text-white" data-toggle="modal" data-target=""><i class="fa fa-edit"></i> Edit</button> <button class="btn btn-danger text-white" onclick="deleteCitizen(${row.id})"><i class="fa fa-trash"></i> Delete</button>`;
+                        return `<a href="/citizen/${row.id}/manage" class="btn btn-info text-white"><i class="fa fa-gear"></i> Manage</a> <button class="btn btn-danger text-white" onclick="deleteCitizen(${row.id})"><i class="fa fa-trash"></i> Delete</button>`;
                     }
                 }
             ],
