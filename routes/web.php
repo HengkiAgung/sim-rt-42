@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get("/{id}/manage", 'manageCitizen')->name('citizen.manage');
             Route::put("/{id}/update", 'update')->name('citizen.update');
             Route::post("/{id}/delete", 'destroy')->name('citizen.delete');
+            Route::get("/export", 'getExcelTemplate')->name('citizen.export');
+            Route::post("/import", 'exportCitizen')->name('citizen.import');
         });
     });
 

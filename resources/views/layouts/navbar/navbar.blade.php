@@ -26,7 +26,7 @@
                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
                         class="menu-item  here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
-                            <a href="" class="menu-title">Warga</a>
+                            <a href="{{ route('citizen.index') }}" class="menu-title">Warga</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                     </div>

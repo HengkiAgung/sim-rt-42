@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Citizen;
 
+use App\Exports\CitizenExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CitizenImport;
 use App\Models\Citizen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use File;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class ManagementCitizenController extends Controller
@@ -25,10 +28,6 @@ class ManagementCitizenController extends Controller
     public function store(Request $request)
     {
         $citizen = Citizen::create($request->except('ktp_file', 'pic_file'));
-
-        if ($request->has('ktp_file')) {
-            $citizen->ktp_file = $this->saveFile($request->ktp_file, 'file/ktp/');
-        }
 
         if ($request->has('pic_file')) {
             $citizen->pic_file = $this->saveFile($request->pic_file, 'file/pic/');
@@ -49,12 +48,7 @@ class ManagementCitizenController extends Controller
     public function update(Request $request, $id)
     {
         $citizen = Citizen::find($id);
-        // dd($request->all());
         $citizen->update($request->except('ktp_file', 'pic_file'));
-
-        if ($request->has('ktp_file')) {
-           $citizen->ktp_file = $this->saveFile($request->ktp_file, 'file/ktp/', $citizen->ktp_file);
-        }
 
         if ($request->has('pic_file')) {
             $citizen->pic_file = $this->saveFile($request->pic_file, 'file/pic/', $citizen->pic_file);
@@ -87,5 +81,15 @@ class ManagementCitizenController extends Controller
         return response()->json(['status' => 'Berhasil menghapus data warga']);
     }
 
-    // getDataTable
+    public function getExcelTemplate()
+    {
+        return Excel::download(new CitizenExport, 'warga.xlsx');
+    }
+
+    public function exportCitizen(Request $request)
+    {
+        Excel::import(new CitizenImport, $request->file('file')->store('temp'));
+
+        return redirect()->route('citizen.index')->with('success', 'Berhasil export data warga');
+    }
 }

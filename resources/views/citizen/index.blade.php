@@ -198,19 +198,31 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="fw-bold">Foto KTP</span>
-                                </label>
-                                <input type="file" name="ktp_file"
-                                    class="form-control form-control-solid  @error('ktp_file') is-invalid @enderror"
-                                    accept=".png,.jpg,.jpeg" />
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="fw-bold">Pekerjaan</span>
+                                    <span class="fw-bold">Foto Profil</span>
                                 </label>
                                 <input type="file" name="pic_file"
                                     class="form-control form-control-solid  @error('pic_file') is-invalid @enderror"
-                                    accept=".png,.jpg,.jpeg" />
+                                    accept="image/*" />
+                            </div>
+
+                            <h4 class="mt-3">Data Penyewa <sup><small class="text-danger">(Harap diisi apabila status
+                                        warga menyewa)</small></sup></h4>
+                            <div class="col-md-6 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="fw-bold">Nama Penyewa</span>
+                                </label>
+                                <input type="text" :value="old('tenant_name')" maxlength="200"
+                                    placeholder="Nama Penyewa" name="tenant_name" autocomplete="current-tenant_name"
+                                    class="form-control form-control-solid  @error('tenant_name') is-invalid @enderror" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="fw-bold">Nomor Telpon Penyewa</span>
+                                </label>
+                                <input type="text" :value="old('tenant_phone_number')" maxlength="200"
+                                    placeholder="08xxxx" name="tenant_phone_number"
+                                    autocomplete="current-tenant_phone_number"
+                                    class="form-control form-control-solid  @error('tenant_phone_number') is-invalid @enderror" />
                             </div>
                         </div>
                         <div class="text-center mt-9">
@@ -226,13 +238,63 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal-import" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header pb-0 border-0">
+                    <h5 class="modal-title h4">Tambah Warga</h5>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="modal-body mb-7">
+                    <form action="{{ route('citizen.import') }}" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                        enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <label class="d-flex align-items-center fs-6 form-label mb-2">
+                            <span class="required fw-bold">File Excel</span>
+                        </label>
+                        <input type="file" name="file"
+                            class="form-control form-control-solid  @error('pic_file') is-invalid @enderror"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" required/>
+                        <label class="d-flex align-items-center fs-6 form-label mt-5">
+                            <span class="fw-bold"><a href="{{ route('citizen.export') }}">Download Template</a></span>
+                        </label>
+                        <div class="text-center mt-9">
+                            <button type="submit" id="modal_submit" class="btn btn-sm btn-info w-lg-200px">
+                                <span class="indicator-label">Import</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row justify-content-center mt-n20">
         <div class="col-lg-12 mt-n20">
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
                     <div class="card p-10">
-                        <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3 btn_tambah_job_level"><i
-                                class="fa-solid fa-plus"></i> </a>
+                        <a href="#modal" data-bs-toggle="modal"
+                            class="btn btn-info btn-sm btn_tambah_job_level mb-2"><i class="fa-solid fa-plus"></i>
+                        </a>
+                        <a href="#modal-import" data-bs-toggle="modal"
+                            class="btn btn-success btn-sm btn_tambah_job_level mb-5"><i
+                                class="fa-solid fa-file-excel"></i> </a>
+                        @if (session()->has('success'))
+                            <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
+                                <div class="d-flex flex-column justify-content-center pe-0 pe-sm-10 text-white">
+                                    <span>{{ session()->get('success') }}</span>
+                                </div>
+                                <button type="button"
+                                    class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                                    data-bs-dismiss="alert">
+                                    <i class="fa fa-times text-white"><span class="path1"></span><span
+                                            class="path2"></span></i>
+                                </button>
+                            </div>
+                        @endif
                         <table id="table" class="table">
                             <thead>
                                 <tr>
@@ -259,14 +321,29 @@
         generateDatatable({
             tableName: 'citizenTable',
             ajaxLink: '/citizen/get/datatable',
-            columnData: [
-                {data: 'DT_RowIndex', orderable: false, searchable: false},
-                {"data": 'nik'},
-                {"data": 'name'},
-                {"data": 'birthplace'},
-                {"data": 'birthdate'},
-                {"data": 'gender'},
-                {"data": 'address_domisili'},
+            columnData: [{
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    "data": 'nik'
+                },
+                {
+                    "data": 'name'
+                },
+                {
+                    "data": 'birthplace'
+                },
+                {
+                    "data": 'birthdate'
+                },
+                {
+                    "data": 'gender'
+                },
+                {
+                    "data": 'address_domisili'
+                },
                 {
                     data: null,
                     render: function(data, type, row, meta) {
@@ -279,9 +356,11 @@
 
         submitForm({
             formId: 'modal',
-            ajaxLink: '/citizen/store'
+            ajaxLink: '/citizen/store',
+            successCallback: () => {
+                window['citizenTable'].ajax.reload()
+            }
         })
-
         const deleteCitizen = (id) => {
             Swal.fire({
                 title: "Apakah Anda yakin menghapus Warga ini?",
@@ -301,13 +380,12 @@
                             'X-CSRF-TOKEN': "{{ csrf_token() }}"
                         },
                         success: function(res) {
-                            toastr.success(res.status,'Selamat 🚀 !');
+                            toastr.success(res.status, 'Selamat 🚀 !');
                             window['citizenTable'].ajax.reload()
                         }
                     })
                 }
             });
         }
-
     </script>
 @endpush

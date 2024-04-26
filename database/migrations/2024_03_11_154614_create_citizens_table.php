@@ -33,9 +33,11 @@ return new class extends Migration
             $table->enum('marital_status', Constants::MARITAL_STATUS);
             $table->string('work');
             $table->string('nationality');
-            $table->string('ktp_file')->nullable();
             $table->string('pic_file')->nullable();
             $table->enum('citizen_status', Constants::CITIZEN_STATUS);
+
+            $table->string('tenant_name')->nullable();
+            $table->string('tenant_phone_number')->nullable();
             $table->timestamps();
         });
     }
