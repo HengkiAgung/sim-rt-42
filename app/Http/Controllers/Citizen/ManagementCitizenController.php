@@ -6,6 +6,7 @@ use App\Exports\CitizenExport;
 use App\Http\Controllers\Controller;
 use App\Imports\CitizenImport;
 use App\Models\Citizen;
+use App\Models\Hallway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use File;
@@ -16,7 +17,9 @@ class ManagementCitizenController extends Controller
 {
     public function index ()
     {
-        return view('citizen.index');
+        $hallways = Hallway::get();
+
+        return view('citizen.index', compact('hallways'));;
     }
 
     public function getDataTable()
@@ -45,8 +48,9 @@ class ManagementCitizenController extends Controller
     public function manageCitizen($id)
     {
         $citizen = Citizen::find($id);
+        $hallways = Hallway::get();
 
-        return view('citizen.manage', compact('citizen'));
+        return view('citizen.manage', compact('citizen', 'hallways'));
     }
 
     public function update(Request $request, $id)

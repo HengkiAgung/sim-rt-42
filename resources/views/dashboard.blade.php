@@ -24,7 +24,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg fw-bold text-primary text-uppercase mb-1">
                                                 Laki-Laki</div>
-                                            <div class="h5 mb-0 fw-bold text-gray-800">400</div>
+                                            <div class="h5 mb-0 fw-bold text-gray-800">{{ $citizen_m }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-user-tie fa-2x"></i>
@@ -42,7 +42,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg fw-bold text-success text-uppercase mb-1">
                                                 Perempuan</div>
-                                            <div class="h5 mb-0 fw-bold text-gray-800">200</div>
+                                            <div class="h5 mb-0 fw-bold text-gray-800">{{ $citizen_f }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user"></i>
@@ -60,7 +60,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg text-center fw-bold text-success text-uppercase mb-1">
                                                 Total Warga RT.42</div>
-                                            <div class="h5 mb-0 text-center fw-bold text-gray-800">200</div>
+                                            <div class="h5 mb-0 text-center fw-bold text-gray-800">{{ $total_citizen }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users"></i>
@@ -72,17 +72,18 @@
                     </div>
 
                     <!-- Content Lorong Row -->
-                    <div class="row">
+                    <div class="row justify-content-center">
 
                         <!-- Lorong 1 -->
+                        @foreach ($citizen_hallways as $citizen_hallway)
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg fw-bold text-primary text-uppercase mb-1">
-                                                Total Warga Lorong - 1</div>
-                                            <div class="h5 mb-0 fw-bold text-gray-800">400</div>
+                                                Total Warga {{ $citizen_hallway['h_name'] }}</div>
+                                            <div class="h5 mb-0 fw-bold text-gray-800">{{ $citizen_hallway['total'] }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users"></i>
@@ -91,60 +92,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- lorong 2 -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg fw-bold text-primary text-uppercase mb-1">
-                                                Total Warga Lorong - 2</div>
-                                            <div class="h5 mb-0 fw-bold text-gray-800">400</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Lorong 3 -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg fw-bold text-primary text-uppercase mb-1">
-                                                Total Warga Lorong - 3</div>
-                                            <div class="h5 mb-0 fw-bold text-gray-800">400</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Lorong 4 -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body border-left border-primary">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg  fw-bold text-success text-uppercase mb-1">
-                                                Total Warga Lorong - 4</div>
-                                            <div class="h5 mb-0 fw-bold text-gray-800">200</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <!-- Content Chart Row -->
@@ -170,7 +118,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Berkeluarga atau Tidak</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body w-75 d-flex justify-content-center">
+                                <div class="card-body w-75 mx-auto">
                                     <canvas id="donutChart"></canvas>
                                 </div>
                             </div>
@@ -182,6 +130,7 @@
         </div>
     </div>
 
+    @push('js')
     <script>
         //Chart.js
         var ctx = document.getElementById('barChart').getContext('2d');
@@ -224,4 +173,6 @@
             }
         });
     </script>
+    @endpush
+
 @endsection

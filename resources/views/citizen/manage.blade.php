@@ -269,6 +269,18 @@
                                                     <option value="Lainnya" {{ $citizen->citizen_status == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                                                 </select>
                                             </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                                    <span class="fw-bold">Lorong</span>
+                                                </label>
+                                                <select name="hallway_id"
+                                                    class="form-control form-control-solid @error('hallway_id') is-invalid @enderror">
+                                                    <option value="">Pilih Lorong</option>
+                                                    @foreach ($hallways as $hallway)
+                                                    <option value="{{ $hallway->id }}" {{ $citizen->hallway_id == $hallway->id ? 'selected' : '' }}>{{ $hallway->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -282,18 +294,18 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                                    <span class="required fw-bold">Nama Penyewa</span>
+                                                    <span class="fw-bold">Nama Penyewa</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->tenant_name }}" required maxlength="200"
+                                                <input type="text" value="{{ $citizen->tenant_name }}" maxlength="200"
                                                     autofocus placeholder="Nama Penyewa" name="tenant_name"
                                                     class="form-control form-control-solid  @error('tenant_name') is-invalid @enderror" />
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                                    <span class="required fw-bold">Nomor Telpon Penyewa</span>
+                                                    <span class="fw-bold">Nomor Telpon Penyewa</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->tenant_phone_number }}" required maxlength="200"
-                                                    required placeholder="08xxxxxx" name="tenant_phone_number"
+                                                <input type="text" value="{{ $citizen->tenant_phone_number }}" maxlength="200"
+                                                    placeholder="08xxxxxx" name="tenant_phone_number"
                                                     autocomplete="current-tenant_phone_number"
                                                     class="form-control form-control-solid  @error('tenant_phone_number') is-invalid @enderror" />
                                             </div>

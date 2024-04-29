@@ -121,9 +121,8 @@
     <script src="{{ asset('sense') }}/plugins/global/plugins.bundle.js"></script>
     <script src="{{ asset('sense') }}/js/scripts.bundle.js"></script>
     <script src="{{ asset('sense') }}/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
-
+    <script src="{{ asset('sense') }}/plugins/custom/jvalidate/jvalidate.js"></script>
+    <script src="{{ asset('sense') }}/plugins/custom/jvalidate/add-jvalidate.js"></script>
 
     <script>
         function generateDatatable({

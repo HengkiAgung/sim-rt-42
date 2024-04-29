@@ -83,8 +83,8 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="fw-bold">Alamat</span>
                                 </label>
-                                <input type="text" :value="old('address_domisili')" maxlength="200"
-                                    placeholder="Alamat" name="address_domisili" autocomplete="current-address_domisili"
+                                <input type="text" :value="old('address_domisili')" maxlength="200" placeholder="Alamat"
+                                    name="address_domisili" autocomplete="current-address_domisili"
                                     class="form-control form-control-solid  @error('address_domisili') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
@@ -115,8 +115,8 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="fw-bold">Kelurahan</span>
                                 </label>
-                                <input type="text" :value="old('district')" maxlength="200"
-                                    placeholder="Kelurahan" name="district" autocomplete="current-district"
+                                <input type="text" :value="old('district')" maxlength="200" placeholder="Kelurahan"
+                                    name="district" autocomplete="current-district"
                                     class="form-control form-control-solid  @error('district') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
@@ -141,7 +141,6 @@
                                 </label>
                                 <select name="religion"
                                     class="form-control form-control-solid @error('religion') is-invalid @enderror"
-
                                     <option value="Islam">Islam</option>
                                     <option value="Kristen">Kristen</option>
                                     <option value="Katolik">Katolik</option>
@@ -156,7 +155,6 @@
                                 </label>
                                 <select name="martial_status"
                                     class="form-control form-control-solid @error('martial_status') is-invalid @enderror"
-
                                     <option value="Belum Kawin">Belum Kawin</option>
                                     <option value="Kawin">Kawin</option>
                                     <option value="Cerai Hidup">Cerai Hidup</option>
@@ -167,8 +165,8 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="fw-bold">Pekerjaan</span>
                                 </label>
-                                <input type="text" :value="old('work')" maxlength="200"
-                                    placeholder="Pekerjaan" name="work" autocomplete="current-work"
+                                <input type="text" :value="old('work')" maxlength="200" placeholder="Pekerjaan"
+                                    name="work" autocomplete="current-work"
                                     class="form-control form-control-solid  @error('work') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
@@ -194,6 +192,18 @@
                                     <option value="Rumah Toko">Rumah Toko</option>
                                     <option value="Sewa">Sewa</option>
                                     <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="fw-bold">Lorong</span>
+                                </label>
+                                <select name="hallway_id"
+                                    class="form-control form-control-solid @error('hallway_id') is-invalid @enderror">
+                                    <option value="">Pilih Lorong</option>
+                                    @foreach ($hallways as $hallway)
+                                    <option value="{{ $hallway->id }}">{{ $hallway->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -256,7 +266,8 @@
                         </label>
                         <input type="file" name="file"
                             class="form-control form-control-solid  @error('pic_file') is-invalid @enderror"
-                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" required/>
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+                            required />
                         <label class="d-flex align-items-center fs-6 form-label mt-5">
                             <span class="fw-bold"><a href="{{ route('citizen.export') }}">Download Template</a></span>
                         </label>
@@ -276,39 +287,52 @@
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
                     <div class="card p-10">
-                        <a href="#modal" data-bs-toggle="modal"
-                            class="btn btn-info btn-sm btn_tambah_job_level mb-2"><i class="fa-solid fa-plus"></i>
-                        </a>
-                        <a href="#modal-import" data-bs-toggle="modal"
-                            class="btn btn-success btn-sm btn_tambah_job_level mb-5"><i
-                                class="fa-solid fa-file-excel"></i> </a>
-                        @if (session()->has('success'))
-                            <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                                <div class="d-flex flex-column justify-content-center pe-0 pe-sm-10 text-white">
-                                    <span>{{ session()->get('success') }}</span>
-                                </div>
-                                <button type="button"
-                                    class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
-                                    data-bs-dismiss="alert">
-                                    <i class="fa fa-times text-white"><span class="path1"></span><span
-                                            class="path2"></span></i>
-                                </button>
+                        <div class="row">
+                            <div class="col-lg-6 mb-9">
+                                <h4>Keluarga</h4>
                             </div>
-                        @endif
-                        <table id="table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>NIK</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Tempat Lahir</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat Domisili</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <div>
+                                    <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3"><i
+                                            class="fa-solid fa-plus"></i> Tambah Warga</a>
+                                    <a href="#modal-import" data-bs-toggle="modal"
+                                        class="btn btn-success btn-sm"><i
+                                            class="fa-solid fa-file-excel"></i> Export Warga </a>
+                                </div>
+                            </div>
+                            <div id="kt_table_customer_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                @if (session()->has('success'))
+                                    <div
+                                        class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
+                                        <div class="d-flex flex-column justify-content-center pe-0 pe-sm-10 text-white">
+                                            <span>{{ session()->get('success') }}</span>
+                                        </div>
+                                        <button type="button"
+                                            class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                                            data-bs-dismiss="alert">
+                                            <i class="fa fa-times text-white"><span class="path1"></span><span
+                                                    class="path2"></span></i>
+                                        </button>
+                                    </div>
+                                @endif
+                                <div class="table-responsive">
+                                    <table id="table" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>NIK</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Tempat Lahir</th>
+                                                <th>Tanggal Lahir</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Alamat Domisili</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
