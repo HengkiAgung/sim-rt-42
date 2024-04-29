@@ -16,7 +16,7 @@
             @csrf
             @method('PUT')
             <div class="row">
-                <div class="col-lg-3 mt-n20">
+                <div class="col-md-3 mt-n20 mb-5">
                     <div class="row gap-5">
                         <div class="col-12">
                             <div class="card card-flush py-4">
@@ -59,52 +59,15 @@
 
                                     <div class="text-muted fs-7"> Only *.png, *.jpg and
                                         *.jpeg image files are accepted</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Foto KTP</h2>
-                                    </div>
-                                </div>
-
-                                <div class="card-body text-center pt-0">
-
-                                    <div class="image-input image-input-outline image-input-placeholder mb-3"
-                                        data-kt-image-input="true">
-                                        <div class="image-input-wrapper w-150px h-150px"
-                                            style="background-image: url(&quot;{{ asset('file/ktp/'.$citizen->ktp_file) }}&quot;);">
-                                        </div>
-
-                                        <label
-                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                            aria-label="Change avatar" data-bs-original-title="Change avatar"
-                                            data-kt-initialized="1">
-                                            <i class="fa fa-pen"><span class="path1"></span><span
-                                                    class="path2"></span></i>
-                                            <input type="file" name="ktp_file"
-                                                 @error('ktp_file') is-invalid @enderror"
-                                                accept=".png,.jpg,.jpeg" />
-                                            <input type="hidden" name="avatar_remove" value="0">
-                                        </label>
-
-                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
-                                            <i class="fa fa-times"><span class="path1"></span><span class="path2"></span></i>            </span>
-
-                                    </div>
-
-                                    <div class="text-muted fs-7">Only *.png, *.jpg and
-                                        *.jpeg
-                                        image files are accepted</div>
+                                    @if ($citizen->pic_file)
+                                    <div><a href="{{ asset('file/pic/'.$citizen->pic_file) }}" target="_blank">Lihat File</a></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-md-9">
                     <div class="justify-content-center mt-md-n20">
                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
 
@@ -113,7 +76,7 @@
                                 <div class="card card-flush py-4">
                                     <div class="card-header">
                                         <div class="card-title">
-                                            <h2>Ubah Data Warga</h2>
+                                            <h2>Ubah Data</h2>
                                         </div>
                                     </div>
 
@@ -308,6 +271,34 @@
                                                     <option value="Sewa" {{ $citizen->citizen_status == 'Sewa' ? 'selected' : '' }}>Sewa</option>
                                                     <option value="Lainnya" {{ $citizen->citizen_status == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Data Penyewa <sup><small class="text-danger">(Harap diisi apabila status warga menyewa)</small></sup></h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                                    <span class="required fw-bold">Nama Penyewa</span>
+                                                </label>
+                                                <input type="text" value="{{ $citizen->tenant_name }}" required maxlength="200"
+                                                    autofocus placeholder="Nama Penyewa" name="tenant_name"
+                                                    class="form-control form-control-solid  @error('tenant_name') is-invalid @enderror" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                                    <span class="required fw-bold">Nomor Telpon Penyewa</span>
+                                                </label>
+                                                <input type="text" value="{{ $citizen->tenant_phone_number }}" required maxlength="200"
+                                                    required placeholder="08xxxxxx" name="tenant_phone_number"
+                                                    autocomplete="current-tenant_phone_number"
+                                                    class="form-control form-control-solid  @error('tenant_phone_number') is-invalid @enderror" />
                                             </div>
                                         </div>
                                     </div>
