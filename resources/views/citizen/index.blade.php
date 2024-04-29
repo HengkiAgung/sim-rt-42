@@ -81,67 +81,67 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Alamat</span>
+                                    <span class="fw-bold">Alamat</span>
                                 </label>
-                                <input type="text" :value="old('address_domisili')" required maxlength="200"
+                                <input type="text" :value="old('address_domisili')" maxlength="200"
                                     placeholder="Alamat" name="address_domisili" autocomplete="current-address_domisili"
                                     class="form-control form-control-solid  @error('address_domisili') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Alamat (Sesuai KTP)</span>
+                                    <span class="fw-bold">Alamat (Sesuai KTP)</span>
                                 </label>
-                                <input type="text" :value="old('address_ktp')" required maxlength="200"
+                                <input type="text" :value="old('address_ktp')" maxlength="200"
                                     placeholder="Alamat sesuai KTP" name="address_ktp" autocomplete="current-address-ktp"
                                     class="form-control form-control-solid  @error('address_ktp') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">RT</span>
+                                    <span class="fw-bold">RT</span>
                                 </label>
-                                <input type="number" :value="old('rt')" required placeholder="0" name="rt"
+                                <input type="number" :value="old('rt')" placeholder="0" name="rt"
                                     autocomplete="current-rt"
                                     class="form-control form-control-solid  @error('rt') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">RW</span>
+                                    <span class="fw-bold">RW</span>
                                 </label>
-                                <input type="number" :value="old('rw')" required placeholder="0" name="rw"
+                                <input type="number" :value="old('rw')" placeholder="0" name="rw"
                                     autocomplete="current-rw"
                                     class="form-control form-control-solid  @error('rw') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Kelurahan</span>
+                                    <span class="fw-bold">Kelurahan</span>
                                 </label>
-                                <input type="text" :value="old('district')" required maxlength="200"
+                                <input type="text" :value="old('district')" maxlength="200"
                                     placeholder="Kelurahan" name="district" autocomplete="current-district"
                                     class="form-control form-control-solid  @error('district') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Kecamatan</span>
+                                    <span class="fw-bold">Kecamatan</span>
                                 </label>
-                                <input type="text" :value="old('sub_district')" required maxlength="200"
+                                <input type="text" :value="old('sub_district')" maxlength="200"
                                     placeholder="Kelurahan" name="sub_district" autocomplete="current-sub-district"
                                     class="form-control form-control-solid  @error('sub_district') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Kota</span>
+                                    <span class="fw-bold">Kota</span>
                                 </label>
-                                <input type="text" :value="old('city')" required maxlength="200" placeholder="Kota"
+                                <input type="text" :value="old('city')" maxlength="200" placeholder="Kota"
                                     name="city" autocomplete="current-city"
                                     class="form-control form-control-solid  @error('city') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Agama</span>
+                                    <span class="fw-bold">Agama</span>
                                 </label>
                                 <select name="religion"
                                     class="form-control form-control-solid @error('religion') is-invalid @enderror"
-                                    required>
+
                                     <option value="Islam">Islam</option>
                                     <option value="Kristen">Kristen</option>
                                     <option value="Katolik">Katolik</option>
@@ -152,11 +152,11 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Status Pernikahan</span>
+                                    <span class="fw-bold">Status Pernikahan</span>
                                 </label>
                                 <select name="martial_status"
                                     class="form-control form-control-solid @error('martial_status') is-invalid @enderror"
-                                    required>
+
                                     <option value="Belum Kawin">Belum Kawin</option>
                                     <option value="Kawin">Kawin</option>
                                     <option value="Cerai Hidup">Cerai Hidup</option>
@@ -165,17 +165,17 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Pekerjaan</span>
+                                    <span class="fw-bold">Pekerjaan</span>
                                 </label>
-                                <input type="text" :value="old('work')" required maxlength="200"
+                                <input type="text" :value="old('work')" maxlength="200"
                                     placeholder="Pekerjaan" name="work" autocomplete="current-work"
                                     class="form-control form-control-solid  @error('work') is-invalid @enderror" />
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Kewarganegaraan</span>
+                                    <span class="fw-bold">Kewarganegaraan</span>
                                 </label>
-                                <input type="text" :value="old('nationality')" required maxlength="200"
+                                <input type="text" :value="old('nationality')" maxlength="200"
                                     placeholder="Kelurahan" name="nationality" autocomplete="current-nationality"
                                     class="form-control form-control-solid  @error('nationality') is-invalid @enderror" />
                             </div>

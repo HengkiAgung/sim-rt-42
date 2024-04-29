@@ -22,7 +22,11 @@ class ManagementCitizenController extends Controller
     public function getDataTable()
     {
         $citizen = Citizen::get(['id','nik', 'name', 'birthplace', 'birthdate', 'gender', 'address_domisili']);
-        return DataTables::of($citizen)->addIndexColumn()->make();
+        return DataTables::of($citizen)
+        ->addColumn('address_domisili', function ($citizen) {
+            return $citizen->alamat_domisili ?? '-';
+        })
+        ->addIndexColumn()->make();
     }
 
     public function store(Request $request)

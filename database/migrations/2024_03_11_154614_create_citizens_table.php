@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('family_id')->nullable()->constrained()->onDelete('null');
-            $table->foreignId('hallway_id')->nullable()->constrained()->onDelete('null');
+            $table->foreignId('family_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('hallway_id')->nullable()->constrained()->onDelete('set null');
             $table->bigInteger('nik')->unique();
             $table->string('name');
             $table->string('birthplace');
