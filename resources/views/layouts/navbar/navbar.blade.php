@@ -33,7 +33,7 @@
                     <div data-kt-menu-placement="bottom-start"
                         class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
-                            <a href="" class="menu-title">Keluarga</a>
+                            <a href="{{route('family.index')}}" class="menu-title">Keluarga</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                     </div>

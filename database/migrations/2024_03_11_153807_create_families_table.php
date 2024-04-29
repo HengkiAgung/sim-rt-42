@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('card_number');
             $table->string('head_of_family');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('rt');
-            $table->string('rw');
-            $table->string('sub_district');
-            $table->string('district');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('province');
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
+            $table->string('sub_district')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('province')->nullable();
             $table->timestamps();
         });
     }

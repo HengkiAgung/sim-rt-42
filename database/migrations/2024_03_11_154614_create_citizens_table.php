@@ -14,25 +14,25 @@ return new class extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('family_id')->nullable()->constrained();
-            $table->foreignId('hallway_id')->nullable()->constrained();
+            $table->foreignId('family_id')->nullable()->constrained()->onDelete('null');
+            $table->foreignId('hallway_id')->nullable()->constrained()->onDelete('null');
             $table->bigInteger('nik')->unique();
             $table->string('name');
             $table->string('birthplace');
             $table->date('birthdate');
             $table->enum('gender', Constants::GENDER);
             $table->enum("blood_type", Constants::BLOOD_TYPE);
-            $table->string('address_domisili');
-            $table->string('address_ktp');
-            $table->string('rt');
-            $table->string('rw');
-            $table->string('sub_district');
-            $table->string('district');
-            $table->string('city');
-            $table->enum('religion', Constants::RELIGION);
-            $table->enum('marital_status', Constants::MARITAL_STATUS);
-            $table->string('work');
-            $table->string('nationality');
+            $table->string('address_domisili')->nullable();
+            $table->string('address_ktp')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
+            $table->string('sub_district')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
+            $table->enum('religion', Constants::RELIGION)->nullable();
+            $table->enum('marital_status', Constants::MARITAL_STATUS)->nullable();
+            $table->string('work')->nullable();
+            $table->string('nationality')->nullable();
             $table->string('pic_file')->nullable();
             $table->enum('citizen_status', Constants::CITIZEN_STATUS);
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title-apps', 'Citizen')
+@section('title-apps', 'Lorong')
 {{-- @section('sub-title-apps', 'Organization') --}}
 
 @section('navbar')
