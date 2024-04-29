@@ -23,24 +23,24 @@
                 data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
                 <div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-500 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
                     id="kt_app_header_menu" data-kt-menu="true">
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
+                    <div data-kt-menu-placement="bottom-start"
                         class="menu-item  here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
-                            <a href="" class="menu-title">Warga</a>
+                            <a href="{{route('citizen.index')}}" class="menu-title">Warga</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                     </div>
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
+                    <div data-kt-menu-placement="bottom-start"
                         class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
                             <a href="" class="menu-title">Keluarga</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                     </div>
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
+                    <div data-kt-menu-placement="bottom-start"
                         class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <span class="menu-link">
-                            <a href="" class="menu-title">Lorong</a>
+                            <a href="{{route('hallways.index')}}" class="menu-title">Lorong</a>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                     </div>

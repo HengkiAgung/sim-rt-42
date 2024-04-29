@@ -231,22 +231,35 @@
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
                     <div class="card p-10">
-                        <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3 btn_tambah_job_level"><i
-                                class="fa-solid fa-plus"></i> </a>
-                        <table id="table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>NIK</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Tempat Lahir</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat Domisili</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="row">
+                            <div class="col-lg-6 mb-9">
+                                <h4>Penduduk / Warga</h4>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <div>
+                                    <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3 btn_tambah_job_level"><i
+                                            class="fa-solid fa-plus"></i> Tambah Penduduk</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="kt_table_customer_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="table-responsive">
+                                <table id="table" class="table align-top table-striped border table-rounded gy-5">
+                                    <thead>
+                                        <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
+                                            <th>#</th>
+                                            <th>NIK</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Tempat Lahir</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Alamat Domisili</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
