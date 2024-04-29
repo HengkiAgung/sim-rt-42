@@ -52,6 +52,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post("/update", 'update')->name('family.update');
             Route::post("/delete", 'delete')->name('family.delete');
             Route::get("/get/datatable", 'getDataTable')->name('family.get.datatable');
+            Route::get('/detail/{id}', 'detail')->name('family.detail');
+            Route::get('/get-member/datatable', 'getMemberDataTable')->name('family.get-member.datatable');
+            // family.assign-citizen
+            Route::post('/assign-citizen', 'assignCitizen')->name('family.assign-citizen');
+            // family.delete-member
+            Route::post('/delete-member', 'deleteMember')->name('family.delete-member');
         });
     });
 

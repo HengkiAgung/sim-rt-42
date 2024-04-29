@@ -115,7 +115,7 @@
         </div>
     </div>
     <div class="modal fade" id="modal_edit_family" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header pb-0 border-0">
                     <h5 class="modal-title h4">Perbaharui Keluarga</h5>
@@ -262,70 +262,69 @@
     </div>
 
     <script>
+        const fillForm = (
+            id,
+            head_of_family,
+            card_number,
+            address,
+            phone,
+            rt,
+            rw,
+            sub_district,
+            district,
+            city,
+            postal_code,
+            province
+        ) => {
+            $('#id').val(id);
+            $('#edit_head_of_family').val(head_of_family);
+            $('#edit_card_number').val(card_number);
+            $('#edit_address').val(address);
+            $('#edit_phone').val(phone);
+            $('#edit_rt').val(rt);
+            $('#edit_rw').val(rw);
+            $('#edit_sub_district').val(sub_district);
+            $('#edit_district').val(district);
+            $('#edit_city').val(city);
+            $('#edit_postal_code').val(postal_code);
+            $('#edit_province').val(province);
+        }
+
+        const deleteFamily = (id) => {
+            Swal.fire({
+                title: 'Apakah Anda yakin menghapus Keluarga ini?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Tidak, Batalkan!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('family.delete') }}",
+                        type: 'POST',
+                        data: {
+                            id: id
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        success: function(data) {
+                            toastr.success("Keluarga Berhasil Dihapus", 'Selamat 🚀 !');
+                            tableFamily.ajax.reload();
+                        },
+                        error: function(xhr, status, errorThrown) {
+                            const data = JSON.parse(xhr.responseText);
+                            toastr.error(data.message, 'Opps!');
+                        }
+                    });
+                }
+
+            });
+        }
+
         $(document).ready(function() {
-            const fillForm = (
-                id,
-                head_of_family,
-                card_number,
-                address,
-                phone,
-                rt,
-                rw,
-                sub_district,
-                district,
-                city,
-                postal_code,
-                province
-            ) => {
-                $('#id').val(id);
-                $('head_of_family').val(head_of_family);
-                $('card_number').val(card_number);
-                $('address').val(address);
-                $('phone').val(phone);
-                $('rt').val(rt);
-                $('rw').val(rw);
-                $('sub_district').val(sub_district);
-                $('district').val(district);
-                $('city').val(city);
-                $('postal_code').val(postal_code);
-                $('province').val(province);
-                $('#edit_name').val(name);
-            }
-
-            const deleteFamily = (id) => {
-                Swal.fire({
-                    title: 'Apakah Anda yakin menghapus Keluarga ini?',
-                    text: "Anda tidak akan dapat mengembalikan ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, Hapus!',
-                    cancelButtonText: 'Tidak, Batalkan!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: "{{ route('family.delete') }}",
-                            type: 'POST',
-                            data: {
-                                id: id
-                            },
-                            headers: {
-                                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                            },
-                            success: function(data) {
-                                toastr.success("Keluarga Berhasil Dihapus", 'Selamat 🚀 !');
-                                tableHalways.ajax.reload();
-                            },
-                            error: function(xhr, status, errorThrown) {
-                                const data = JSON.parse(xhr.responseText);
-                                toastr.error(data.message, 'Opps!');
-                            }
-                        });
-                    }
-
-                });
-            }
-
             tableFamily = $('#table_family').DataTable({
                 processing: true,
                 serverSide: true,
