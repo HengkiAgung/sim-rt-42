@@ -375,6 +375,46 @@ input[type="number"]::-webkit-outer-spin-button {
         hiddenTotalInput.value = totalAmount; // Store the numerical value for passing to the main page.
     }
 
+    //Chart.js
+    var ctx = document.getElementById('barChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($chartData['labels']),
+                datasets: [{
+                    label: 'Data',
+                    data: @json($chartData['data']),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('donutChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: @json($chartData['labels']),
+                datasets: [{
+                    label: 'Data',
+                    data: @json($chartData['data']),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                padding: 10
+            }
+        });
     // function updateTotalSumBundle() {
     //     let totalSumBundle = 0;
     //     const modalVal = parseInt(document.querySelector(`[name='modal']`).value);

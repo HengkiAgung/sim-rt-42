@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Citizen\ManagementCitizenController;
 use App\Http\Controllers\HallwaysController;
 use App\Http\Controllers\ManagementFamilyController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post("logout", [AuthController::class, "logout"])->name("logout");
     Route::post('reset/password', [AuthController::class, 'resetPassword'])->name('reset.password');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
     Route::prefix("citizen")->group(function () {
         Route::controller(ManagementCitizenController::class)->group(function () {
