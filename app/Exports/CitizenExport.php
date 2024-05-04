@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Hallway;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -28,13 +29,21 @@ class CitizenExport implements FromCollection, WithHeadings, WithEvents
         $martial_status = ['Belum Kawin','Kawin','Cerai Hidup','Cerai Mati'];
         $citizen_status = ['Mengontrak','Kost','Milik Sendiri','Rumah Dinas','Rumah Susun','Rumah Toko','Sewa','Lainnya'];
 
+        $hallway = [];
+        $hallway_data = Hallway::get('name');
+        foreach ($hallway_data as $key => $h) {
+            $hallway[] = $h->name;
+        }
+
         $selects=[
             ['columns_name'=>'E','options'=>$gender],
             ['columns_name'=>'F','options'=>$blood_type],
             ['columns_name'=>'N','options'=>$religion],
             ['columns_name'=>'O','options'=>$martial_status],
             ['columns_name'=>'R','options'=>$citizen_status],
+            ['columns_name'=>'S','options'=>$hallway],
         ];
+
         $this->selects=$selects;
         $this->row_count=50;
         $this->column_count=18;
@@ -66,6 +75,7 @@ class CitizenExport implements FromCollection, WithHeadings, WithEvents
             'Pekerjaan',
             'Kewarganegaraan',
             'Status Warga',
+            'Lorong'
         ];
     }
 

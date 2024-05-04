@@ -21,7 +21,7 @@ class HallwaysController extends Controller
 
         return DataTables::of($query)
             ->addColumn('chief', function ($hallway) {
-                return $hallway->chief->name;
+                return !$hallway->chief ? '-' : $hallway->chief->name;
             })
             ->addColumn('action', function ($hallway) {
                 $edit = '

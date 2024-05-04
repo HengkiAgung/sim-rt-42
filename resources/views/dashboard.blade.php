@@ -96,7 +96,7 @@
                     </div>
 
                     <!-- Content Chart Row -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <!-- Bar Chart -->
                         <div class="col">
                             <div class="card shadow mb-4">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

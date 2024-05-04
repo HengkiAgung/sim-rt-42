@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Citizen;
+use App\Models\Hallway;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -16,6 +17,11 @@ class CitizenImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        $hallway = null;
+        if ($row['lorong']) {
+            $hallway = Hallway::where('name', $row['lorong'])->first()->id;
+        }
+
         return new Citizen([
             'nik' => $row['nik'],
             'name' => $row['nama'],
@@ -35,6 +41,7 @@ class CitizenImport implements ToModel, WithHeadingRow
             'work' => $row['pekerjaan'],
             'nationality' => $row['kewarganegaraan'],
             'citizen_status' => $row['status_warga'],
+            'hallway_id' => $hallway
         ]);
     }
 }

@@ -202,7 +202,7 @@
                                     class="form-control form-control-solid @error('hallway_id') is-invalid @enderror">
                                     <option value="">Pilih Lorong</option>
                                     @foreach ($hallways as $hallway)
-                                    <option value="{{ $hallway->id }}">{{ $hallway->name }}</option>
+                                        <option value="{{ $hallway->id }}">{{ $hallway->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -295,9 +295,8 @@
                                 <div>
                                     <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3"><i
                                             class="fa-solid fa-plus"></i> Tambah Warga</a>
-                                    <a href="#modal-import" data-bs-toggle="modal"
-                                        class="btn btn-success btn-sm"><i
-                                            class="fa-solid fa-file-excel"></i> Export Warga </a>
+                                    <a href="#modal-import" data-bs-toggle="modal" class="btn btn-success btn-sm"><i
+                                            class="fa-solid fa-file-excel"></i> Import Warga </a>
                                 </div>
                             </div>
                             <div id="kt_table_customer_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -324,9 +323,11 @@
                                                 <th>Nama Lengkap</th>
                                                 <th>Tempat Lahir</th>
                                                 <th>Tanggal Lahir</th>
+                                                <th>Umur</th>
                                                 <th>Jenis Kelamin</th>
+                                                <th>Lorong</th>
                                                 <th>Alamat Domisili</th>
-                                                <th>Aksi</th>
+                                                <th width="20%">Aksi</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -363,7 +364,13 @@
                     "data": 'birthdate'
                 },
                 {
+                    "data": 'age'
+                },
+                {
                     "data": 'gender'
+                },
+                {
+                    "data": 'hallway'
                 },
                 {
                     "data": 'address_domisili'
@@ -371,7 +378,17 @@
                 {
                     data: null,
                     render: function(data, type, row, meta) {
-                        return `<a href="/citizen/${row.id}/manage" class="btn btn-info text-white"><i class="fa fa-gear"></i> Manage</a> <button class="btn btn-danger text-white" onclick="deleteCitizen(${row.id})"><i class="fa fa-trash"></i> Delete</button>`;
+                        return `<button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="btn-edit">
+                                            <a href="/citizen/${row.id}/manage" class="dropdown-item py-2"><i class="fa fa-gear"></i> Manage</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item py-2" onclick="deleteCitizen(${row.id})"><i class="fa fa-trash"></i> Delete</button>
+                                    </li>
+                                </ul>`
                     }
                 }
             ],

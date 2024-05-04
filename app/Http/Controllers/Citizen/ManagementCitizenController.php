@@ -24,8 +24,14 @@ class ManagementCitizenController extends Controller
 
     public function getDataTable()
     {
-        $citizen = Citizen::get(['id','nik', 'name', 'birthplace', 'birthdate', 'gender', 'address_domisili']);
+        $citizen = Citizen::with('hallway')->get();
         return DataTables::of($citizen)
+        ->addColumn('age', function ($citizen) {
+            return $citizen->age;
+        })
+        ->addColumn('hallway', function ($citizen) {
+            return !$citizen->hallway ? '-' : $citizen->hallway->name;
+        })
         ->addColumn('address_domisili', function ($citizen) {
             return $citizen->alamat_domisili ?? '-';
         })

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,5 +24,11 @@ class Citizen extends Model
     public function family()
     {
         return $this->belongsTo(Family::class);
+    }
+
+    public function getAgeAttribute()
+    {
+        $birth_date = Carbon::parse($this->birthdate);
+        return $birth_date->diffInYears(now());
     }
 }
