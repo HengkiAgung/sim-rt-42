@@ -33,7 +33,7 @@ class ManagementCitizenController extends Controller
             return !$citizen->hallway ? '-' : $citizen->hallway->name;
         })
         ->addColumn('address_domisili', function ($citizen) {
-            return $citizen->alamat_domisili ?? '-';
+            return $citizen->address_domisili ?? '-';
         })
         ->addIndexColumn()->make();
     }
