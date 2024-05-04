@@ -28,7 +28,7 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">NIK</span>
                                 </label>
-                                <input type="text" :value="old('nik')" required maxlength="200" autofocus
+                                <input type="number" :value="old('nik')" required maxlength="200" autofocus
                                     placeholder="NIK" name="nik"
                                     class="form-control form-control-solid  @error('nik') is-invalid @enderror" />
                             </div>
