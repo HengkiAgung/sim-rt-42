@@ -100,7 +100,7 @@ class ManagementCitizenController extends Controller
         return Excel::download(new CitizenExport, 'warga.xlsx');
     }
 
-    public function exportCitizen(Request $request)
+    public function importCitizen(Request $request)
     {
         Excel::import(new CitizenImport, $request->file('file')->store('temp'));
 
