@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\FamiliesImport;
 use App\Models\Citizen;
 use App\Models\Family;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class ManagementFamilyController extends Controller
@@ -219,5 +221,12 @@ class ManagementFamilyController extends Controller
                 "message" => $th->getMessage()
             ]);
         }
+    }
+
+    public function importFamilies(Request $request)
+    {
+        Excel::import(new FamiliesImport, $request->file('file')->store('temp'));
+
+        return redirect()->route('family.index')->with('success', 'Berhasil import data keluarga');
     }
 }

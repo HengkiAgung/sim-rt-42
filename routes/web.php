@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/assign-citizen', 'assignCitizen')->name('family.assign-citizen');
             // family.delete-member
             Route::post('/delete-member', 'deleteMember')->name('family.delete-member');
+            Route::post("/import", 'importFamilies')->name('family.import');
         });
     });
 

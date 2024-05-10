@@ -352,7 +352,6 @@
         generateDatatable({
             tableName: 'citizenTable',
             ajaxLink: '/citizen/get/datatable',
-            // filters: $('.filter-gender').val(),
             columnData: [{
                     data: 'DT_RowIndex',
                     orderable: false,

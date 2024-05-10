@@ -220,6 +220,37 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal-import" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header pb-0 border-0">
+                    <h5 class="modal-title h4">Tambah Warga</h5>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="modal-body mb-7">
+                    <form action="{{ route('family.import') }}" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                        enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <label class="d-flex align-items-center fs-6 form-label mb-2">
+                            <span class="required fw-bold">File Excel</span>
+                        </label>
+                        <input type="file" name="file"
+                            class="form-control form-control-solid  @error('pic_file') is-invalid @enderror"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+                            required />
+                        <div class="text-center mt-9">
+                            <button type="submit" id="modal_submit" class="btn btn-sm btn-info w-lg-200px">
+                                <span class="indicator-label">Import</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row justify-content-center mt-n20">
         <div class="col-lg-12 mt-n20">
             <div class="row justify-content-center mt-md-n20">
@@ -231,6 +262,8 @@
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
                                 <div>
+                                    <a href="#modal-import" data-bs-toggle="modal" class="btn btn-success btn-sm"><i
+                                        class="fa-solid fa-file-excel"></i> Import Warga </a>
                                     <a href="#modal_create_family" data-bs-toggle="modal"
                                         class="btn btn-info btn-sm me-3 modal_create_family"><i
                                             class="fa-solid fa-plus"></i> Tambah Keluarga
