@@ -224,7 +224,7 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header pb-0 border-0">
-                    <h5 class="modal-title h4">Tambah Warga</h5>
+                    <h5 class="modal-title h4">Tambah Keluarga</h5>
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
                         <i class="fas fa-times"></i>
                     </div>
@@ -263,7 +263,7 @@
                             <div class="col-lg-6 d-flex justify-content-end">
                                 <div>
                                     <a href="#modal-import" data-bs-toggle="modal" class="btn btn-success btn-sm"><i
-                                        class="fa-solid fa-file-excel"></i> Import Warga </a>
+                                        class="fa-solid fa-file-excel"></i> Import Keluarga </a>
                                     <a href="#modal_create_family" data-bs-toggle="modal"
                                         class="btn btn-info btn-sm me-3 modal_create_family"><i
                                             class="fa-solid fa-plus"></i> Tambah Keluarga
