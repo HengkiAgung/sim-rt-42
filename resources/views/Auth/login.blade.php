@@ -1,6 +1,5 @@
 @extends('layouts.auth.app')
 @section('title-apps', 'Login')
-
 @section('content')
     <div class="container">
 
