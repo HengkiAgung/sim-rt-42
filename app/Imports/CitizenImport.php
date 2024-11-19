@@ -17,8 +17,12 @@ class CitizenImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        if(!array_filter($row)) {
+            return null;
+        }
+
         $hallway = null;
-        if ($row['lorong']) {
+        if (array_key_exists('lorong', $row)) {
             $hallway = Hallway::where('name', $row['lorong'])->first()->id;
         }
 

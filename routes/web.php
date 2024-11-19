@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
             Route::put("/{id}/update", 'update')->name('citizen.update');
             Route::post("/{id}/delete", 'destroy')->name('citizen.delete');
             Route::get("/export", 'getExcelTemplate')->name('citizen.export');
-            Route::post("/import", 'exportCitizen')->name('citizen.import');
+            Route::post("/import", 'importCitizen')->name('citizen.import');
         });
     });
 
@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/assign-citizen', 'assignCitizen')->name('family.assign-citizen');
             // family.delete-member
             Route::post('/delete-member', 'deleteMember')->name('family.delete-member');
+            Route::post("/import", 'importFamilies')->name('family.import');
         });
     });
 

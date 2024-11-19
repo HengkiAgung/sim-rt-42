@@ -33,7 +33,7 @@ class ManagementCitizenController extends Controller
             return !$citizen->hallway ? '-' : $citizen->hallway->name;
         })
         ->addColumn('address_domisili', function ($citizen) {
-            return $citizen->alamat_domisili ?? '-';
+            return $citizen->address_domisili ?? '-';
         })
         ->addIndexColumn()->make();
     }
@@ -100,7 +100,7 @@ class ManagementCitizenController extends Controller
         return Excel::download(new CitizenExport, 'warga.xlsx');
     }
 
-    public function exportCitizen(Request $request)
+    public function importCitizen(Request $request)
     {
         Excel::import(new CitizenImport, $request->file('file')->store('temp'));
 

@@ -28,7 +28,7 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">NIK</span>
                                 </label>
-                                <input type="text" :value="old('nik')" required maxlength="200" autofocus
+                                <input type="number" :value="old('nik')" required maxlength="200" autofocus
                                     placeholder="NIK" name="nik"
                                     class="form-control form-control-solid  @error('nik') is-invalid @enderror" />
                             </div>
@@ -299,6 +299,12 @@
                                             class="fa-solid fa-file-excel"></i> Import Warga </a>
                                 </div>
                             </div>
+                            <label for="filter-gender"> Filter Gender :</label>
+                            <select data-column="6" class="form-control col-sm-4 filter-gender" placeholder="Filter Gender">
+                                <option value=""> Pilih Gender </option>
+                                <option value="L"> Laki-laki </option>
+                                <option value="P"> Perempuan </option>
+                            </select>
                             <div id="kt_table_customer_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                 @if (session()->has('success'))
                                     <div
@@ -428,5 +434,9 @@
                 }
             });
         }
+
+        $('.filter-gender').change(function() {
+            window['citizenTable'].column($(this).data('column')).search($(this).val()).draw();
+        });
     </script>
 @endpush

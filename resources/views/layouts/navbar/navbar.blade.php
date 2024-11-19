@@ -152,9 +152,9 @@
                                     <img alt="Logo" src="{{ asset('sense') }}/media/avatars/blank.png" />
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bolder d-flex align-items-center fs-6">Hengki
+                                    <div class="fw-bolder d-flex align-items-center fs-6">{{ auth()->user()->name }}
                                     </div>
-                                    <span class="text-gray-500 fs-8">hengki@mail.com</span>
+                                    <span class="text-gray-500 fs-8">{{ auth()->user()->email }}</span>
                                 </div>
                             </div>
                         </div>
