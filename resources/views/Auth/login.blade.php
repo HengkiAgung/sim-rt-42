@@ -1,27 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 @section('title-apps', 'Login')
-@section('toolbar-status', 'false')
-@section('navbar-status', 'false')
 
 @section('content')
-    <div class="row h-100">
-        <div class="col-lg-12 align-self-center">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="card bgi-no-repeat d-md-flex d-none h-md-450px"
-                                        style="background-color: #1B283F; background-position: 0 calc(100% + 0.5rem); background-size: 100% auto; background-image:url('{{ asset('sense') }}/media/svg/general/rhone.svg')">
-                                        {{-- <div class="card-body d-flex flex-column justify-content-between pb-0">
-                                        <span class="fs-1 fw-bolder">Where Greay Things Happen</span>
-                                        <img class="mx-auto" src="{{asset('sense')}}/media/svg/general/rhone.svg" alt="">
-                                    </div> --}}
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card h-md-450px">
+                                    <div class="h-md-450px">
                                         <div class="card-body p-md-8 p-0">
                                             <div class="row">
                                                 <div class="col-lg-12 mb-10">
@@ -37,15 +35,16 @@
                                                                 alt="">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div><br><br>
                                                 <div class="col-lg-12 mb-15">
                                                     <form class="form w-100" id="kt_sign_in_form"
                                                         action="{{ route('authenticate') }}" method="POST" autocomplete>
                                                         @csrf
                                                         <div class="row">
+                                                            <br><br>
                                                             <div class="col-lg-12 mb-3">
                                                                 <label
-                                                                    class="d-flex align-items-center fs-6 form-label mb-2">
+                                                                    class="d-flex align-items-center fs-6 form-label mb-2 mt-2">
                                                                     <span class="required fw-bold">Email</span>
                                                                 </label>
                                                                 <input type="email" :value="old('email')" required
@@ -95,7 +94,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
 @endsection
