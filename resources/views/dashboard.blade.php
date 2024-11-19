@@ -18,7 +18,7 @@
 
                         <!--Laki-Laki -->
                         <div class="col-xl-6 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2 px-4">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -36,7 +36,7 @@
 
                         <!-- Perempuan -->
                         <div class="col-xl-6 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-2 px-4">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -45,7 +45,7 @@
                                             <div class="h5 mb-0 fw-bold text-gray-800">{{ $citizen_f }}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-user"></i>
+                                            <i class="fas fa-user fa-2x"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -54,16 +54,16 @@
 
                         <!-- TotalWarga -->
                         <div class="col mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-2 px-4">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-lg text-center fw-bold text-success text-uppercase mb-1">
+                                            <div class="text-lg fw-bold text-success text-uppercase mb-1">
                                                 Total Warga RT.42</div>
-                                            <div class="h5 mb-0 text-center fw-bold text-gray-800">{{ $total_citizen }}</div>
+                                            <div class="h5 mb-0 fw-bold text-gray-800">{{ $total_citizen }}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-users"></i>
+                                            <i class="fas fa-users fa-2x"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -77,16 +77,13 @@
                         <!-- Lorong 1 -->
                         @foreach ($citizen_hallways as $citizen_hallway)
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2 px-4">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-lg fw-bold text-primary text-uppercase mb-1">
+                                            <div class="text-md fw-bold text-primary text-uppercase mb-1">
                                                 Total Warga {{ $citizen_hallway['h_name'] }}</div>
                                             <div class="h5 mb-0 fw-bold text-gray-800">{{ $citizen_hallway['total'] }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -129,50 +126,5 @@
             </div>
         </div>
     </div>
-
-    @push('js')
-    <script>
-        //Chart.js
-        var ctx = document.getElementById('barChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: @json($chartData['labels']),
-                datasets: [{
-                    label: 'Data',
-                    data: @json($chartData['data']),
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 3
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        var ctx = document.getElementById('donutChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: @json($chartData['labels']),
-                datasets: [{
-                    label: 'Data',
-                    data: @json($chartData['data']),
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 3
-                }]
-            },
-            options: {
-                padding: 10
-            }
-        });
-    </script>
-    @endpush
 
 @endsection

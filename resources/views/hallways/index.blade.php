@@ -57,6 +57,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modal_edit_hallway" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
@@ -109,7 +110,7 @@
         <div class="col-lg-12 mt-n20">
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
-                    <div class="card p-10">
+                    <div class="card p-4">
                         <div class="row">
                             <div class="col-lg-6 mb-9">
                                 <h4>Lorong</h4>
@@ -156,37 +157,26 @@
         }
 
         const deleteHallway = (id) => {
-            Swal.fire({
-                title: 'Apakah Anda yakin menghapus Lorong ini?',
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Tidak, Batalkan!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('hallways.delete') }}",
-                        type: 'POST',
-                        data: {
-                            id: id
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        success: function(data) {
-                            toastr.success("Lorong Berhasil Dihapus", 'Selamat 🚀 !');
-                            tableHalways.ajax.reload();
-                        },
-                        error: function(xhr, status, errorThrown) {
-                            const data = JSON.parse(xhr.responseText);
-                            toastr.error(data.message, 'Opps!');
-                        }
-                    });
-                }
-
-            });
+            if (confirm("Apakah Anda yakin menghapus Lorong ini?") == true) {
+                $.ajax({
+                    url: "{{ route('hallways.delete') }}",
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        alert("Lorong Berhasil Dihapus");
+                        tableHalways.ajax.reload();
+                    },
+                    error: function(xhr, status, errorThrown) {
+                        const data = JSON.parse(xhr.responseText);
+                       alert(data.message + 'Opps!');
+                    }
+                });
+            }
         }
 
         $(document).ready(function() {
@@ -262,19 +252,15 @@
                             );
                     },
                     success: function(data) {
-                        toastr.success("Lorong Berhasil Ditambahkan", 'Selamat 🚀 !');
-                        $(`#form_create_hallway_submit`).removeAttr('disabled', 'disabled');
-                        $('#form_create_hallway_submit').html(
-                            '<span class="indicator-label">Simpan</span>');
-                        $('#modal_create_hallway').modal('hide');
-                        tableHalways.ajax.reload();
+                        alert("Lorong Berhasil Ditambahkan");
+                        location.reload();
                     },
                     error: function(xhr, status, errorThrown) {
                         $(`#form_create_hallway_submit`).removeAttr('disabled', 'disabled');
                         $('#form_create_hallway_submit').html(
                             '<span class="indicator-label">Simpan</span>');
                         const data = JSON.parse(xhr.responseText);
-                        toastr.error(data.message, 'Opps!');
+                       alert(data.message + 'Opps!');
 
                     }
                 });
@@ -300,19 +286,15 @@
                             );
                     },
                     success: function(data) {
-                        toastr.success("Lorong Berhasil Ditambahkan", 'Selamat 🚀 !');
-                        $(`#form_edit_hallway_submit`).removeAttr('disabled', 'disabled');
-                        $('#form_edit_hallway_submit').html(
-                            '<span class="indicator-label">Simpan</span>');
-                        $('#modal_edit_hallway').modal('hide');
-                        tableHalways.ajax.reload();
+                        alert("Lorong Berhasil Ditambahkan");
+                        location.reload();
                     },
                     error: function(xhr, status, errorThrown) {
                         $(`#form_edit_hallway_submit`).removeAttr('disabled', 'disabled');
                         $('#form_edit_hallway_submit').html(
                             '<span class="indicator-label">Simpan</span>');
                         const data = JSON.parse(xhr.responseText);
-                        toastr.error(data.message, 'Opps!');
+                       alert(data.message + 'Opps!');
 
                     }
                 });

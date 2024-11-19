@@ -123,29 +123,20 @@ class ManagementFamilyController extends Controller
             })
             ->addColumn('action', function ($query) {
                 $detail = '
-                <li>
                     <div class="btn-edit">
                         <a href="'. route('family.detail', ['id' => $query->id]) .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                     </div>
-                </li>
                 ';
                 $edit = '
-                <li>
                     <div class="btn-edit" onclick="fillForm(' . $query->id . ', \'' . $query->head_of_family . '\' , \'' . $query->card_number . '\',\'' . $query->address . '\',\'' . $query->phone . '\',\'' . $query->rt . '\',\'' . $query->rw . '\',\'' . $query->sub_district . '\',\'' . $query->district . '\',\'' . $query->city . '\',\'' . $query->postal_code . '\',\'' . $query->province . '\')">
                         <a href="#modal_edit_family" data-bs-toggle="modal" class="dropdown-item py-2"><i class="fa-solid fa-pen me-3"></i>Edit</a>
                     </div>
-                </li>
                 ';
-                $delete = '<li><button onclick="deleteFamily(\'' . $query->id . '\')" class="dropdown-item py-2"><i class="fa-solid fa-trash me-3"></i>Delete</button></li>';
+                $delete = '<button onclick="deleteFamily(\'' . $query->id . '\')" class="dropdown-item py-2"><i class="fa-solid fa-trash me-3"></i>Delete</button>';
 
-                return '
-                <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                <ul class="dropdown-menu">
-                ' . $detail . '
+                return '' . $detail . '
                 ' . $edit . '
-                ' . $delete . '
-                </ul>
-                ';
+                ' . $delete . '';
             })
             ->addIndexColumn()
             ->rawColumns(['action'])

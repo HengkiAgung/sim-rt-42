@@ -15,8 +15,7 @@
     <meta property="og:site_name" content="SIM RT 42" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" />
 
-    <link href="{{ asset('sense') }}/plugin/datatables/datatables.bundle.css" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('sense') }}/plugin/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 
     @stack('css')
 
@@ -27,11 +26,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
-    <link href="{{ asset('sense') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
+        integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('sense') }}/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
+    <style>
+        .page-link:has(.previous) {
+            background-image: url("{{ asset('sense/img/left.svg') }}");
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: center;
+            height: 34px;
+            widows: 50px;
+            /* Styles for the .page-link element if it contains an <i> tag */
+        }
+
+        .page-link:has(.next) {
+            background-image: url("{{ asset('sense/img/right.svg') }}");
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: center;
+            height: 34px;
+            widows: 50px;
+            /* Styles for the .page-link element if it contains an <i> tag */
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -110,10 +136,15 @@
 
     <script src="{{ asset('sense') }}/plugin/datatables/datatables.bundle.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
 
     <script>
+
         function generateDatatable({
             tableName,
             ajaxLink,
@@ -176,52 +207,51 @@
             successCallback = () => {},
             failCallback = () => {}
         }) {
-            $(`#${formId}_form`).validate({
-                messages: validationMessages,
-                submitHandler: function(form) {
-                    const formData = new FormData(form);
-                    $(`#${formId}_submit`).attr('disabled', 'disabled');
-                    $.ajax({
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        url: ajaxLink,
-                        type: "POST",
-                        success: function(data) {
-                            $(`#${formId}_cancel`).click();
-                            toastr.success(data.status, 'Selamat 🚀 !');
+            $(`#${formId}_form`).submit(function(event) {
+                event.preventDefault();
+                const formData = new FormData($(`#${formId}_form`)[0]);
+                $(`#${formId}_submit`).attr('disabled', 'disabled');
 
-                            successCallback(data);
-                        },
-                        error: function(xhr, status, errorThrown) {
-                            $(`#${formId}_submit`).removeAttr('disabled', 'disabled');
-                            const data = JSON.parse(xhr.responseText);
-                            toastr.error(errorThrown, 'Opps!');
+                $.ajax({
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    url: ajaxLink,
+                    type: "POST",
+                    success: function(data) {
+                        $(`#${formId}_cancel`).click();
+                        alert(data.status);
 
-                            if (data.errors == null) {
-                                toastr.error(data.message, 'Opps!');
-                                return;
-                            }
+                        successCallback(data);
+                    },
+                    error: function(xhr, status, errorThrown) {
+                        $(`#${formId}_submit`).removeAttr('disabled', 'disabled');
+                        const data = JSON.parse(xhr.responseText);
+                        alert(errorThrown, 'Opps!');
 
-                            if (Object.keys(data.errors).length >= 1) {
-                                Object.keys(data.errors).forEach(keyError => {
-                                    const error = data.errors[keyError];
-
-                                    error.forEach(msg => {
-                                        toastr.error(msg, data.message);
-                                    });
-                                });
-                                return;
-                            }
+                        if (data.errors == null) {
+                            alert(data.message + 'Opps!');
+                            return;
                         }
-                    });
-                }
-            });
-        }
 
+                        if (Object.keys(data.errors).length >= 1) {
+                            Object.keys(data.errors).forEach(keyError => {
+                                const error = data.errors[keyError];
+
+                                error.forEach(msg => {
+                                    alert(msg, data.message);
+                                });
+                            });
+                            return;
+                        }
+                    }
+                });
+            });
+
+        }
     </script>
     @stack('js')
 </body>

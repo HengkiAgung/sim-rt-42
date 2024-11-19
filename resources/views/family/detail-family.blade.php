@@ -48,7 +48,7 @@
         <div class="col-lg-12 mt-n20">
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
-                    <div class="card p-10">
+                    <div class="card p-4">
                         <div class="row">
                             <div class="col-lg-6 mb-9">
                                 <h4>Detail Keluarga</h4>
@@ -153,7 +153,9 @@
                                     <a href="#modal_assign_family" data-bs-toggle="modal" class="btn btn-primary btn-sm">Tambah Warga</a>
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="table-responsive mt-5">
+                                    <h3>Tabel Keluarga</h3>
+
                                     <table id="table_family_member"
                                         class="table align-top table-striped border table-rounded gy-5">
                                         <thead>
@@ -204,12 +206,12 @@
                             'X-CSRF-TOKEN': "{{ csrf_token() }}"
                         },
                         success: function(data) {
-                            toastr.success("Warga Berhasil Dihapus", 'Selamat 🚀 !');
+                            alert("Warga Berhasil Dihapus");
                             tableFamilyMember.ajax.reload();
                         },
                         error: function(xhr, status, errorThrown) {
                             const data = JSON.parse(xhr.responseText);
-                            toastr.error(data.message, 'Opps!');
+                           alert(data.message + 'Opps!');
                         }
                     });
                 }
@@ -306,19 +308,19 @@
                         );
                     },
                     success: function(data) {
-                        toastr.success("Warga Berhasil Ditambahkan", 'Selamat 🚀 !');
+                        alert("Warga Berhasil Ditambahkan");
                         $(`#form_assign_family_submit`).removeAttr('disabled', 'disabled');
                         $('#form_assign_family_submit').html(
                             '<span class="indicator-label">Simpan</span>');
-                        $('#modal_assign_family').modal('hide');
-                        tableFamilyMember.ajax.reload();
+                        location.reload();
+
                     },
                     error: function(xhr, status, errorThrown) {
                         $(`#form_assign_family_submit`).removeAttr('disabled', 'disabled');
                         $('#form_assign_family_submit').html(
                             '<span class="indicator-label">Simpan</span>');
                         const data = JSON.parse(xhr.responseText);
-                        toastr.error(data.message, 'Opps!');
+                       alert(data.message + 'Opps!');
 
                     }
                 });

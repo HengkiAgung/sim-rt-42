@@ -238,7 +238,7 @@
                         <div class="text-center mt-9">
                             <button type="reset" id="modal_cancel" class="btn btn-sm btn-light me-3 w-lg-200px"
                                 data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" id="modal_submit" class="btn btn-sm btn-info w-lg-200px">
+                            <button type="submit" class="btn btn-sm btn-info w-lg-200px">
                                 <span class="indicator-label">Simpan</span>
                             </button>
                         </div>
@@ -272,7 +272,7 @@
                             <span class="fw-bold"><a href="{{ route('citizen.export') }}">Download Template</a></span>
                         </label>
                         <div class="text-center mt-9">
-                            <button type="submit" id="modal_submit" class="btn btn-sm btn-info w-lg-200px">
+                            <button type="submit" class="btn btn-sm btn-info w-lg-200px">
                                 <span class="indicator-label">Import</span>
                             </button>
                         </div>
@@ -286,26 +286,29 @@
         <div class="col-lg-12 mt-n20">
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
-                    <div class="card p-10">
+                    <div class="card p-4">
                         <div class="row">
                             <div class="col-lg-6 mb-9">
-                                <h4>Keluarga</h4>
+                                <h4>Warga</h4>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
                                 <div>
-                                    <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3"><i
-                                            class="fa-solid fa-plus"></i> Tambah Warga</a>
-                                    <a href="#modal-import" data-bs-toggle="modal" class="btn btn-success btn-sm"><i
-                                            class="fa-solid fa-file-excel"></i> Import Warga </a>
+                                    <a href="#modal" data-bs-toggle="modal" class="btn btn-info btn-sm me-3">
+                                        <i class="fa-solid fa-plus"></i> Tambah Warga</a>
+                                    <a href="#modal-import" data-bs-toggle="modal" class="btn btn-success btn-sm">
+                                        <i class="fa-solid fa-file-excel"></i> Import Warga </a>
                                 </div>
                             </div>
-                            <label for="filter-gender"> Filter Gender :</label>
-                            <select data-column="6" class="form-control col-sm-4 filter-gender" placeholder="Filter Gender">
-                                <option value=""> Pilih Gender </option>
-                                <option value="L"> Laki-laki </option>
-                                <option value="P"> Perempuan </option>
-                            </select>
-                            <div id="kt_table_customer_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="col-lg-12">
+                                <label for="filter-gender"> Filter Gender :</label>
+                                <select data-column="6" class="form-control col-sm-4 filter-gender"
+                                    placeholder="Filter Gender">
+                                    <option value=""> Pilih Gender </option>
+                                    <option value="L"> Laki-laki </option>
+                                    <option value="P"> Perempuan </option>
+                                </select>
+                            </div>
+                            <div id="kt_table_customer_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer mt-4">
                                 @if (session()->has('success'))
                                     <div
                                         class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
@@ -384,17 +387,13 @@
                 {
                     data: null,
                     render: function(data, type, row, meta) {
-                        return `<button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li>
+                        return `
                                         <div class="btn-edit">
                                             <a href="/citizen/${row.id}/manage" class="dropdown-item py-2"><i class="fa fa-gear"></i> Manage</a>
                                         </div>
-                                    </li>
-                                    <li>
+
                                         <button class="dropdown-item py-2" onclick="deleteCitizen(${row.id})"><i class="fa fa-trash"></i> Delete</button>
-                                    </li>
-                                </ul>`
+                                    `
                     }
                 }
             ],
@@ -409,30 +408,20 @@
             }
         })
         const deleteCitizen = (id) => {
-            Swal.fire({
-                title: "Apakah Anda yakin menghapus Warga ini?",
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Tidak, Batalkan!',
-                reverseButtons: true
-            }).then((then) => {
-                if (then.isConfirmed) {
-                    console.log(true);
-                    $.ajax({
-                        url: `/citizen/${id}/delete`,
-                        type: "POST",
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        success: function(res) {
-                            toastr.success(res.status, 'Selamat 🚀 !');
-                            window['citizenTable'].ajax.reload()
-                        }
-                    })
-                }
-            });
+            if (confirm("Apakah Anda yakin menghapus Warga ini?") == true) {
+                console.log(true);
+                $.ajax({
+                    url: `/citizen/${id}/delete`,
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(res) {
+                        alert(res.status);
+                        window['citizenTable'].ajax.reload()
+                    }
+                })
+            }
         }
 
         $('.filter-gender').change(function() {

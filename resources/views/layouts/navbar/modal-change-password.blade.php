@@ -19,13 +19,13 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Password Baru</span>
                                 </label>
-                                <input type="password" class="form-control form-control-solid bg-secondary" name="password" required>
+                                <input type="password" class="form-control form-control-solid" name="password" required>
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold text-dark">Konfirmasi Password Baru</span>
                                 </label>
-                                <input type="password" class="form-control form-control-solid bg-secondary" name="confirm_password" required>
+                                <input type="password" class="form-control form-control-solid" name="confirm_password" required>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                 );
             },
             success: function(data) {
-                toastr.success("Password berhasil dirubah", 'Selamat 🚀 !');
+                alert("Password berhasil dirubah");
                 $('#kt_modal_change_password').modal('hide');
                 $('#kt_modal_change_password_submit').attr('disabled', false);
                 $('#kt_modal_change_password_submit').html(
@@ -76,7 +76,7 @@
             },
             error: function(xhr, status, error) {
                 const data = xhr.responseJSON;
-                toastr.error(data.message, 'Opps!');
+               alert(data.message + 'Opps!');
             }
         });
     });

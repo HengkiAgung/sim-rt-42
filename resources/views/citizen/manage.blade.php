@@ -12,22 +12,16 @@
 
 @section('content')
     <div class="justify-content-center mt-n20">
-        <form action="{{ route('citizen.update', $citizen->id) }}" id="form-citizen" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('citizen.update', $citizen->id) }}" id="form-citizen" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-3 mt-n20 mb-5">
                     <div class="row gap-5">
                         <div class="col-12">
-                            <div class="card card-flush py-4">
+                            <div class="card card-flush">
                                 <!--begin::Card header-->
-                                <div class="card-header">
-                                    <!--begin::Card title-->
-                                    <div class="card-title">
-                                        <h2>Foto Warga</h2>
-                                    </div>
-                                    <!--end::Card title-->
-                                </div>
                                 <!--end::Card header-->
 
                                 <!--begin::Card body-->
@@ -35,8 +29,8 @@
 
                                     <div class="image-input image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
-                                        <div class="image-input-wrapper w-150px h-150px"
-                                            style="background-image: url(&quot;{{ asset('file/pic/'.$citizen->pic_file) }}&quot;);">
+                                        <div class="image-input-wrapper rounded m-auto mt-5"
+                                            style="background-image: url('{{ asset('file/pic/' . $citizen->pic_file) }}'); background-repeat: no-repeat; background-size: cover; width: 150px; height: 150px;">
                                         </div>
 
                                         <label
@@ -46,21 +40,17 @@
                                             data-kt-initialized="1">
                                             <i class="fa fa-pen"><span class="path1"></span><span
                                                     class="path2"></span></i>
-                                            <input type="file" name="pic_file"
-                                                 @error('pic_file') is-invalid @enderror
-                                                accept=".png,.jpg,.jpeg" />
-                                            <input type="hidden" name="avatar_remove" value="0">
+                                            <input type="file" name="pic_file" @error('pic_file') is-invalid @enderror
+                                                accept=".png,.jpg,.jpeg" style="display: none" />
                                         </label>
-
-                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar" data-bs-original-title="Cancel avatar" data-kt-initialized="1">
-                                            <i class="fa fa-times"><span class="path1"></span><span class="path2"></span></i>            </span>
 
                                     </div>
 
                                     <div class="text-muted fs-7"> Only *.png, *.jpg and
                                         *.jpeg image files are accepted</div>
                                     @if ($citizen->pic_file)
-                                    <div><a href="{{ asset('file/pic/'.$citizen->pic_file) }}" target="_blank">Lihat File</a></div>
+                                        <div><a href="{{ asset('file/pic/' . $citizen->pic_file) }}" target="_blank">Lihat
+                                                File</a></div>
                                     @endif
                                 </div>
                             </div>
@@ -73,7 +63,7 @@
 
                             <div class="d-flex flex-column gap-7 gap-lg-10">
 
-                                <div class="card card-flush py-4">
+                                <div class="card card-flush">
                                     <div class="card-header">
                                         <div class="card-title">
                                             <h2>Ubah Data</h2>
@@ -82,14 +72,9 @@
 
                                     <div class="card-body pt-0">
                                         @if (session()->has('success'))
-                                        <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                                            <div class="d-flex flex-column justify-content-center pe-0 pe-sm-10 text-white">
+                                            <div class="alert alert-success mt-2" role="alert">
                                                 <span>{{ session()->get('success') }}</span>
                                             </div>
-                                            <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-                                                <i class="fa fa-times text-white"><span class="path1"></span><span class="path2"></span></i>
-                                            </button>
-                                        </div>
                                         @endif
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
@@ -113,8 +98,8 @@
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                                     <span class="required fw-bold">Tempat Lahir</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->birthplace }}" required maxlength="200"
-                                                    placeholder="Tempat Lahir" name="birthplace"
+                                                <input type="text" value="{{ $citizen->birthplace }}" required
+                                                    maxlength="200" placeholder="Tempat Lahir" name="birthplace"
                                                     autocomplete="current-birthplace"
                                                     class="form-control form-control-solid  @error('birthplace') is-invalid @enderror" />
                                             </div>
@@ -133,8 +118,10 @@
                                                 <select name="gender"
                                                     class="form-control form-control-solid @error('gender') is-invalid @enderror"
                                                     required>
-                                                    <option value="L" {{ $citizen->gender == 'L' ? 'selected' : '' }}>Laki-Laki</option>
-                                                    <option value="P" {{ $citizen->gender == 'P' ? 'selected' : '' }}>Perempuan</option>
+                                                    <option value="L" {{ $citizen->gender == 'L' ? 'selected' : '' }}>
+                                                        Laki-Laki</option>
+                                                    <option value="P" {{ $citizen->gender == 'P' ? 'selected' : '' }}>
+                                                        Perempuan</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
@@ -144,17 +131,22 @@
                                                 <select name="blood_type"
                                                     class="form-control form-control-solid @error('blood_type') is-invalid @enderror"
                                                     required>
-                                                    <option value="A" {{ $citizen->blood_type == 'A' ? 'selected' : '' }}>A</option>
-                                                    <option value="B" {{ $citizen->blood_type == 'B' ? 'selected' : '' }}>B</option>
-                                                    <option value="AB" {{ $citizen->blood_type == 'AB' ? 'selected' : '' }}>AB</option>
-                                                    <option value="O" {{ $citizen->blood_type == 'O' ? 'selected' : '' }}>O</option>
+                                                    <option value="A"
+                                                        {{ $citizen->blood_type == 'A' ? 'selected' : '' }}>A</option>
+                                                    <option value="B"
+                                                        {{ $citizen->blood_type == 'B' ? 'selected' : '' }}>B</option>
+                                                    <option value="AB"
+                                                        {{ $citizen->blood_type == 'AB' ? 'selected' : '' }}>AB</option>
+                                                    <option value="O"
+                                                        {{ $citizen->blood_type == 'O' ? 'selected' : '' }}>O</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                                     <span class="fw-bold">Alamat</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->address_domisili }}"                                                     maxlength="200" placeholder="Alamat" name="address_domisili"
+                                                <input type="text" value="{{ $citizen->address_domisili }}"
+                                                    maxlength="200" placeholder="Alamat" name="address_domisili"
                                                     autocomplete="current-address_domisili"
                                                     class="form-control form-control-solid  @error('address_domisili') is-invalid @enderror" />
                                             </div>
@@ -162,8 +154,8 @@
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                                     <span class="fw-bold">Alamat (Sesuai KTP)</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->address_ktp }}" maxlength="200"
-                                                    placeholder="Alamat sesuai KTP" name="address_ktp"
+                                                <input type="text" value="{{ $citizen->address_ktp }}"
+                                                    maxlength="200" placeholder="Alamat sesuai KTP" name="address_ktp"
                                                     autocomplete="current-address-ktp"
                                                     class="form-control form-control-solid  @error('address_ktp') is-invalid @enderror" />
                                             </div>
@@ -196,7 +188,8 @@
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                                     <span class="fw-bold">Kecamatan</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->sub_district }}"                                                     maxlength="200" placeholder="Kelurahan" name="sub_district"
+                                                <input type="text" value="{{ $citizen->sub_district }}"
+                                                    maxlength="200" placeholder="Kelurahan" name="sub_district"
                                                     autocomplete="current-sub-district"
                                                     class="form-control form-control-solid  @error('sub_district') is-invalid @enderror" />
                                             </div>
@@ -214,13 +207,23 @@
                                                 </label>
                                                 <select name="religion"
                                                     class="form-control form-control-solid @error('religion') is-invalid @enderror"
-
-                                                    <option value="Islam" {{ $citizen->religion == 'Islam' ? 'selected' : '' }}>Islam</option>
-                                                    <option value="Kristen" {{ $citizen->religion == 'Kristen' ? 'selected' : '' }}>Kristen</option>
-                                                    <option value="Katolik" {{ $citizen->religion == 'Katolik' ? 'selected' : '' }}>Katolik</option>
-                                                    <option value="Hindu" {{ $citizen->religion == 'Hindu' ? 'selected' : '' }}>Hindu</option>
-                                                    <option value="Budha" {{ $citizen->religion == 'Budha' ? 'selected' : '' }}>Budha</option>
-                                                    <option value="Konghucu" {{ $citizen->religion == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                                                    <option value="Islam"
+                                                    {{ $citizen->religion == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                                    <option value="Kristen"
+                                                        {{ $citizen->religion == 'Kristen' ? 'selected' : '' }}>Kristen
+                                                    </option>
+                                                    <option value="Katolik"
+                                                        {{ $citizen->religion == 'Katolik' ? 'selected' : '' }}>Katolik
+                                                    </option>
+                                                    <option value="Hindu"
+                                                        {{ $citizen->religion == 'Hindu' ? 'selected' : '' }}>Hindu
+                                                    </option>
+                                                    <option value="Budha"
+                                                        {{ $citizen->religion == 'Budha' ? 'selected' : '' }}>Budha
+                                                    </option>
+                                                    <option value="Konghucu"
+                                                        {{ $citizen->religion == 'Konghucu' ? 'selected' : '' }}>Konghucu
+                                                    </option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
@@ -229,11 +232,18 @@
                                                 </label>
                                                 <select name="martial_status"
                                                     class="form-control form-control-solid @error('martial_status') is-invalid @enderror"
-
-                                                    <option value="Belum Kawin" {{ $citizen->marital_status == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
-                                                    <option value="Kawin" {{ $citizen->marital_status == 'Kawin' ? 'selected' : '' }}>Kawin</option>
-                                                    <option value="Cerai Hidup" {{ $citizen->marital_status == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
-                                                    <option value="Cerai Mati" {{ $citizen->marital_status == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                                                    <option value="Belum Kawin"
+                                                    {{ $citizen->marital_status == 'Belum Kawin' ? 'selected' : '' }}>Belum
+                                                    Kawin</option>
+                                                    <option value="Kawin"
+                                                        {{ $citizen->marital_status == 'Kawin' ? 'selected' : '' }}>Kawin
+                                                    </option>
+                                                    <option value="Cerai Hidup"
+                                                        {{ $citizen->marital_status == 'Cerai Hidup' ? 'selected' : '' }}>
+                                                        Cerai Hidup</option>
+                                                    <option value="Cerai Mati"
+                                                        {{ $citizen->marital_status == 'Cerai Mati' ? 'selected' : '' }}>
+                                                        Cerai Mati</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
@@ -248,7 +258,8 @@
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                                     <span class="fw-bold">Kewarganegaraan</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->nationality }}"                                                     maxlength="200" placeholder="Kelurahan" name="nationality"
+                                                <input type="text" value="{{ $citizen->nationality }}"
+                                                    maxlength="200" placeholder="Kelurahan" name="nationality"
                                                     autocomplete="current-nationality"
                                                     class="form-control form-control-solid  @error('nationality') is-invalid @enderror" />
                                             </div>
@@ -259,14 +270,30 @@
                                                 <select name="citizen_status"
                                                     class="form-control form-control-solid @error('citizen_status') is-invalid @enderror"
                                                     required>
-                                                    <option value="Mengontrak" {{ $citizen->citizen_status == 'Mengontrak' ? 'selected' : '' }}>Mengontrak</option>
-                                                    <option value="Kost" {{ $citizen->citizen_status == 'Kost' ? 'selected' : '' }}>Kost</option>
-                                                    <option value="Milik Sendiri" {{ $citizen->citizen_status == 'Milik Sendiri' ? 'selected' : '' }}>Milik Sendiri</option>
-                                                    <option value="Rumah Dinas" {{ $citizen->citizen_status == 'Rumah Dinas' ? 'selected' : '' }}>Rumah Dinas</option>
-                                                    <option value="Rumah Susun" {{ $citizen->citizen_status == 'Rusun Susun' ? 'selected' : '' }}>Rumah Susun</option>
-                                                    <option value="Rumah Toko" {{ $citizen->citizen_status == 'Rumah Toko' ? 'selected' : '' }}>Rumah Toko</option>
-                                                    <option value="Sewa" {{ $citizen->citizen_status == 'Sewa' ? 'selected' : '' }}>Sewa</option>
-                                                    <option value="Lainnya" {{ $citizen->citizen_status == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                                    <option value="Mengontrak"
+                                                        {{ $citizen->citizen_status == 'Mengontrak' ? 'selected' : '' }}>
+                                                        Mengontrak</option>
+                                                    <option value="Kost"
+                                                        {{ $citizen->citizen_status == 'Kost' ? 'selected' : '' }}>Kost
+                                                    </option>
+                                                    <option value="Milik Sendiri"
+                                                        {{ $citizen->citizen_status == 'Milik Sendiri' ? 'selected' : '' }}>
+                                                        Milik Sendiri</option>
+                                                    <option value="Rumah Dinas"
+                                                        {{ $citizen->citizen_status == 'Rumah Dinas' ? 'selected' : '' }}>
+                                                        Rumah Dinas</option>
+                                                    <option value="Rumah Susun"
+                                                        {{ $citizen->citizen_status == 'Rusun Susun' ? 'selected' : '' }}>
+                                                        Rumah Susun</option>
+                                                    <option value="Rumah Toko"
+                                                        {{ $citizen->citizen_status == 'Rumah Toko' ? 'selected' : '' }}>
+                                                        Rumah Toko</option>
+                                                    <option value="Sewa"
+                                                        {{ $citizen->citizen_status == 'Sewa' ? 'selected' : '' }}>Sewa
+                                                    </option>
+                                                    <option value="Lainnya"
+                                                        {{ $citizen->citizen_status == 'Lainnya' ? 'selected' : '' }}>
+                                                        Lainnya</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
@@ -277,20 +304,19 @@
                                                     class="form-control form-control-solid @error('hallway_id') is-invalid @enderror">
                                                     <option value="">Pilih Lorong</option>
                                                     @foreach ($hallways as $hallway)
-                                                    <option value="{{ $hallway->id }}" {{ $citizen->hallway_id == $hallway->id ? 'selected' : '' }}>{{ $hallway->name }}</option>
+                                                        <option value="{{ $hallway->id }}"
+                                                            {{ $citizen->hallway_id == $hallway->id ? 'selected' : '' }}>
+                                                            {{ $hallway->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="p-3">
 
-                                    <div class="card-header">
-                                        <div class="card-title">
-                                            <h2>Data Penyewa <sup><small class="text-danger">(Harap diisi apabila status warga menyewa)</small></sup></h2>
-                                        </div>
-                                    </div>
+                                        <h2>Data Penyewa <sup><small class="text-danger">(Harap diisi apabila status
+                                                    warga menyewa)</small></sup></h2>
 
-                                    <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
@@ -304,11 +330,24 @@
                                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                                     <span class="fw-bold">Nomor Telpon Penyewa</span>
                                                 </label>
-                                                <input type="text" value="{{ $citizen->tenant_phone_number }}" maxlength="200"
-                                                    placeholder="08xxxxxx" name="tenant_phone_number"
+                                                <input type="text" value="{{ $citizen->tenant_phone_number }}"
+                                                    maxlength="200" placeholder="08xxxxxx" name="tenant_phone_number"
                                                     autocomplete="current-tenant_phone_number"
                                                     class="form-control form-control-solid  @error('tenant_phone_number') is-invalid @enderror" />
                                             </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end">
+                                            <a href="{{ route('citizen.index') }}" id="kt_ecommerce_add_product_cancel"
+                                                class="btn btn-light me-5">
+                                                Kembali
+                                            </a>
+
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="indicator-label">
+                                                    Simpan
+                                                </span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -316,18 +355,6 @@
                             </div>
 
 
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ route('citizen.index') }}"
-                                    id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">
-                                    Kembali
-                                </a>
-
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="indicator-label">
-                                        Simpan
-                                    </span>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -338,22 +365,13 @@
 @endsection
 
 @push('js')
-<script>
-    $(document).ready(function (){
-        $(`#form-citizen`).validate({
-            rules: {
-                ktp_file: {
-                    accept: 'image/jpg,image/jpeg,image/png'
-                },
-                pic_file: {
-                    accept: 'image/jpg,image/jpeg,image/png'
-                }
-            }
-            submitHandler: function(form) {
+    <script>
+        $(document).ready(function() {
+            $(`#form-citizen`).submit(function(form) {
                 form.submit()
-            }
-        });
-    })
-</script>
+            });
 
+            $(`#form-citizen`).onSubmit
+        })
+    </script>
 @endpush

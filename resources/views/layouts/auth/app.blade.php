@@ -132,17 +132,17 @@
                         type: "POST",
                         success: function(data) {
                             $(`#${formId}_cancel`).click();
-                            toastr.success(data.status, 'Selamat 🚀 !');
+                            alert(data.status);
 
                             successCallback(data);
                         },
                         error: function(xhr, status, errorThrown) {
                             $(`#${formId}_submit`).removeAttr('disabled', 'disabled');
                             const data = JSON.parse(xhr.responseText);
-                            toastr.error(errorThrown, 'Opps!');
+                           alert(errorThrown, 'Opps!');
 
                             if (data.errors == null) {
-                                toastr.error(data.message, 'Opps!');
+                               alert(data.message + 'Opps!');
                                 return;
                             }
 
@@ -151,7 +151,7 @@
                                     const error = data.errors[keyError];
 
                                     error.forEach(msg => {
-                                        toastr.error(msg, data.message);
+                                       alert(msg, data.message);
                                     });
                                 });
                                 return;

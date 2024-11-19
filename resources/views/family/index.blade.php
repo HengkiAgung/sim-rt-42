@@ -255,7 +255,7 @@
         <div class="col-lg-12 mt-n20">
             <div class="row justify-content-center mt-md-n20">
                 <div class="col-lg-12 mt-md-n14">
-                    <div class="card p-10">
+                    <div class="card p-4">
                         <div class="row">
                             <div class="col-lg-6 mb-9">
                                 <h4>Keluarga</h4>
@@ -263,7 +263,7 @@
                             <div class="col-lg-6 d-flex justify-content-end">
                                 <div>
                                     <a href="#modal-import" data-bs-toggle="modal" class="btn btn-success btn-sm"><i
-                                        class="fa-solid fa-file-excel"></i> Import Keluarga </a>
+                                            class="fa-solid fa-file-excel"></i> Import Keluarga </a>
                                     <a href="#modal_create_family" data-bs-toggle="modal"
                                         class="btn btn-info btn-sm me-3 modal_create_family"><i
                                             class="fa-solid fa-plus"></i> Tambah Keluarga
@@ -324,37 +324,26 @@
         }
 
         const deleteFamily = (id) => {
-            Swal.fire({
-                title: 'Apakah Anda yakin menghapus Keluarga ini?',
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Tidak, Batalkan!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('family.delete') }}",
-                        type: 'POST',
-                        data: {
-                            id: id
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        success: function(data) {
-                            toastr.success("Keluarga Berhasil Dihapus", 'Selamat 🚀 !');
-                            tableFamily.ajax.reload();
-                        },
-                        error: function(xhr, status, errorThrown) {
-                            const data = JSON.parse(xhr.responseText);
-                            toastr.error(data.message, 'Opps!');
-                        }
-                    });
-                }
-
-            });
+            if (confirm("Apakah Anda yakin menghapus Keluarga ini?") == true) {
+                $.ajax({
+                    url: "{{ route('family.delete') }}",
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        alert("Keluarga Berhasil Dihapus");
+                        tableFamily.ajax.reload();
+                    },
+                    error: function(xhr, status, errorThrown) {
+                        const data = JSON.parse(xhr.responseText);
+                        alert(data.message + 'Opps!');
+                    }
+                });
+            }
         }
 
         $(document).ready(function() {
@@ -436,19 +425,18 @@
                         );
                     },
                     success: function(data) {
-                        toastr.success("Keluarga Berhasil Ditambahkan", 'Selamat 🚀 !');
+                        alert("Keluarga Berhasil Ditambahkan");
                         $(`#form_craete_family_submit`).removeAttr('disabled', 'disabled');
                         $('#form_craete_family_submit').html(
                             '<span class="indicator-label">Simpan</span>');
-                        $('#modal_create_family').modal('hide');
-                        tableFamily.ajax.reload();
+                        location.reload();
                     },
                     error: function(xhr, status, errorThrown) {
                         $(`#form_craete_family_submit`).removeAttr('disabled', 'disabled');
                         $('#form_craete_family_submit').html(
                             '<span class="indicator-label">Simpan</span>');
                         const data = JSON.parse(xhr.responseText);
-                        toastr.error(data.message, 'Opps!');
+                        alert(data.message + 'Opps!');
 
                     }
                 });
@@ -474,19 +462,18 @@
                         );
                     },
                     success: function(data) {
-                        toastr.success("Keluarga Berhasil Ditambahkan", 'Selamat 🚀 !');
+                        alert("Keluarga Berhasil Diubah");
                         $(`#form_edit_family_submit`).removeAttr('disabled', 'disabled');
                         $('#form_edit_family_submit').html(
                             '<span class="indicator-label">Simpan</span>');
-                        $('#modal_edit_family').modal('hide');
-                        tableFamily.ajax.reload();
+                        location.reload();
                     },
                     error: function(xhr, status, errorThrown) {
                         $(`#form_edit_family_submit`).removeAttr('disabled', 'disabled');
                         $('#form_edit_family_submit').html(
                             '<span class="indicator-label">Simpan</span>');
                         const data = JSON.parse(xhr.responseText);
-                        toastr.error(data.message, 'Opps!');
+                        alert(data.message + 'Opps!');
 
                     }
                 });
