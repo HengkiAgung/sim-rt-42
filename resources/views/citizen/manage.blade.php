@@ -206,7 +206,7 @@
                                                     <span class="fw-bold">Agama</span>
                                                 </label>
                                                 <select name="religion"
-                                                    class="form-control form-control-solid @error('religion') is-invalid @enderror"
+                                                    class="form-control form-control-solid @error('religion') is-invalid @enderror">
                                                     <option value="Islam"
                                                     {{ $citizen->religion == 'Islam' ? 'selected' : '' }}>Islam</option>
                                                     <option value="Kristen"
